@@ -1,5 +1,62 @@
 @import "tailwindcss";
 
-body {
-  font-family: 'IBM Plex Mono', monospace;
+/* PRD §8.1 — Font: Inter only */
+* {
+  font-family: "Inter", system-ui, sans-serif;
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #111827;
+  line-height: 1.6;
+}
+
+/* PRD §8.2 — single teal accent, no second accent */
+:root {
+  --accent: #0F766E;
+  --accent-light: #CCFBF1;
+  --accent-dark: #065F46;
+}
+
+/* Remove default list styling */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth focus rings */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.7s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-600 { animation-delay: 0.6s; }
+.animation-delay-800 { animation-delay: 0.8s; }

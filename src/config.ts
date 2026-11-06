@@ -1,91 +1,145 @@
+// ============================================================
+// SITE CONFIGURATION — Novrian Pratama Portfolio
+// Last updated: 1 November 2026
+// Rule: NEVER fabricate numbers, links, dates, or company names.
+//       Leave field empty with // TODO: comment if not confirmed.
+// ============================================================
+
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
-  title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
-  accentColor: "#1d4ed8",
+  name: "Novrian Pratama",
+  title: "Data & Business Intelligence Analyst",
+  tagline: "FMCG-focused",
+  subtitle:
+    "I turn messy sales and distribution data into dashboards and decisions. Currently at PT Amerta Indah Otsuka.",
+  description:
+    "Portfolio of Novrian Pratama — Data Analyst with hands-on experience in FMCG industry, building dashboards and data pipelines using SQL, Python, Power BI, and Looker Studio.",
+  location: "South Jakarta, Indonesia",
+  photo: "/profile.jpg",
+
+  // Accent color — PRD §8.2: single teal accent
+  accentColor: "#0F766E",
+
   social: {
-    email: "your-email@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    email: "novrianprtama2@gmail.com",
+    linkedin: "https://www.linkedin.com/in/novrianpratama",
+    github: "https://github.com/NovrianPratama",
+    medium: "https://medium.com/@novrianprtama2",
+    kaggle: "https://www.kaggle.com/novrian02",
+    // twitter: omitted — not in scope (PRD §4)
   },
+
+  cv: "https://drive.google.com/file/d/1dycjwS_a-ARQlgVVWnA3XiNbK2r9PpdM/view?usp=sharing",
+
+  // ── ABOUT ─────────────────────────────────────────────────
+  // PRD §6.3: two position sentences + one proof sentence. No skill list.
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
-  projects: [
+    "I am a recent Information Systems graduate with hands-on experience in data analytics and business intelligence, focused on the FMCG industry. I have worked across four organisations — building dashboards, processing large datasets, and translating data into decisions that teams can act on. At PT Amerta Indah Otsuka, I built a Python pipeline that processes 3,600+ audit records weekly and consolidated 62,000+ visibility records into a Looker Studio dashboard used for national trade monitoring.",
+
+  // ── SKILLS ────────────────────────────────────────────────
+  // PRD §6.6: grouped, no percentages, no progress bars.
+  // Copy rule §6.1: write as "I have experience using X."
+  skillGroups: [
     {
-      name: "AI Dev Roundup Newsletter",
-      description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      label: "Data Analysis & Visualisation",
+      tools: ["SQL", "Python", "Power BI", "Looker Studio", "Tableau", "Google Sheets"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
-      description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      label: "Database & Engineering Tools",
+      tools: ["MySQL", "DBeaver", "Google Colab", "Excel Power Query"],
     },
     {
-      name: "ExtensionKit",
-      description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      label: "Productivity & Collaboration",
+      tools: ["Git", "Notion", "Figma (basic)"],
     },
   ],
+
+  // ── EXPERIENCE ────────────────────────────────────────────
+  // PRD §6.4: four entries, FMCG anchor first.
+  // Bullets: only verified numbers — no fabrication.
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "PT Amerta Indah Otsuka",
+      title: "Sales Digital Business Application Intern",
+      dateRange: "Aug 2026 – Present",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
+        "Built a Python pipeline (Google Colab) that processes 3,600+ audit records weekly for National General Trade Visibility Monitoring.",
+        "Consolidated 62,000+ visibility records from multiple Excel sources into a MySQL database powering a Looker Studio dashboard.",
+        "Monitored display compliance across Region, Branch, Site, and Salesman dimensions, covering categories: AVAILABLE, NO DISPLAY, NO PHOTO, and photo-quality flags.",
+        "Processed ~3,000 new field submissions per week from sales teams across multiple regions.",
       ],
     },
     {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
+      company: "J&T Cargo Indonesia",
+      title: "Network Quality Specialist",
+      dateRange: "Feb 2026 – Jun 2026",
       bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
+        "Monitored operational performance and SLA compliance across 77 outlets in Riau, sustaining a 98% SLA rate.",
+        "Processed 200,000+ logistics records using Excel Power Query for exception handling and outlet performance analysis.",
+        "Tracked and reported 80–120 daily shipment exceptions to support continuous improvement initiatives.",
       ],
     },
     {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
+      company: "PT Nutrifood Indonesia",
+      title: "Area Marketing Intern",
+      dateRange: "Aug 2025 – Dec 2025",
       bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        // TODO: add verified bullets — no numbers confirmed yet
+        "Supported area marketing operations and field data collection across assigned territories.",
+      ],
+    },
+    {
+      company: "DOT Indonesia",
+      title: "Associate Project Manager Intern",
+      dateRange: "Nov 2024 – Feb 2025",
+      bullets: [
+        // TODO: add verified bullets — no numbers confirmed yet
+        "Assisted project management activities, coordinating tasks and tracking progress across ongoing client projects.",
       ],
     },
   ],
-  education: [
+
+  // ── PROJECTS ──────────────────────────────────────────────
+  // PRD §7: three case studies. Slug-based links to /projects/[slug].
+  // link: null = no external link; slug = internal case study page.
+  projects: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
-      achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
-      ],
+      slug: "otsuka-visibility-monitoring",
+      name: "National GT Visibility Monitoring — PT Amerta Indah Otsuka",
+      description:
+        "Built an end-to-end data pipeline and Looker Studio dashboard to monitor good-display compliance in general trade. Processed 62,000+ cumulative visibility records and 3,600+ weekly audit entries via an automated Python pipeline.",
+      tools: ["Python", "MySQL", "Looker Studio", "Google Sheets", "Excel"],
+      status: "live", // "live" | "in-progress"
+      // liveLink: null, // TODO: Looker Studio link — not open-sourced yet
     },
     {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
+      slug: "fmcg-sales-dataset",
+      name: "FMCG Sales Performance Analysis",
+      description:
+        "Exploratory and diagnostic analysis of a public FMCG sales dataset, modelling sales performance drivers using Power BI with DAX measures. Project is ongoing.",
+      tools: ["Power BI", "DAX", "Excel"],
+      status: "in-progress",
+      // repoLink: null, // TODO: repo not yet published
+    },
+    {
+      slug: "jnt-network-quality",
+      name: "Operational Performance & SLA Monitoring — J&T Cargo",
+      description:
+        "Designed an Excel-based operational dashboard to monitor SLA compliance, shipment exceptions, and outlet performance for 77 outlets across Riau. Processed 200,000+ logistics records using Excel Power Query.",
+      tools: ["Excel", "Power Query", "Power BI"],
+      status: "live",
+    },
+  ],
+
+  // ── EDUCATION ─────────────────────────────────────────────
+  // PRD §6.7: GPA 3.89 only here, not in Hero or About.
+  education: [
+    {
+      school: "Universitas Islam Negeri Sultan Syarif Kasim Riau",
+      degree: "Bachelor of Computer Science in Information Systems",
+      dateRange: "2021 – January 2026",
       achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "GPA: 3.89 / 4.00",
+        // TODO: add thesis title if Novrian wants to display it
       ],
     },
   ],

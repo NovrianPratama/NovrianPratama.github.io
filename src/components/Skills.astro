@@ -1,0 +1,49 @@
+---
+import { siteConfig } from "../config";
+const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
+---
+
+{hasSkills && (
+  <section id="skills" class="px-8 py-16 sm:px-12 sm:py-20 md:px-24 md:py-24 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+
+        <!-- Label -->
+        <div class="lg:col-span-4">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
+            Skills
+          </h2>
+          <div
+            class="w-16 h-1.5 mt-3 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          ></div>
+          <!-- PRD §6.1 rule note: copy only states "I have experience using X." -->
+          <p class="mt-4 text-sm text-gray-500 leading-relaxed">
+            Tools and technologies I have experience using across data analytics and business intelligence projects.
+          </p>
+        </div>
+
+        <!-- Skill groups -->
+        <div class="lg:col-span-8 space-y-8">
+          {siteConfig.skillGroups.map((group) => (
+            <div>
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+                {group.label}
+              </h3>
+              <div class="flex flex-wrap gap-2.5">
+                {group.tools.map((tool) => (
+                  <span
+                    class="px-4 py-2 rounded-lg text-sm font-medium bg-white border border-gray-200 text-gray-800 shadow-sm hover:border-gray-300 transition-colors duration-150"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+)}
