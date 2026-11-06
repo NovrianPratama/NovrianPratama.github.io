@@ -1,8 +1,12 @@
 // ============================================================
 // SITE CONFIGURATION — Novrian Pratama Portfolio
 // Last updated: 1 November 2026
+// Fixed: 6 November 2026 — audit fixes, see audit notes in chat.
 // Rule: NEVER fabricate numbers, links, dates, or company names.
 //       Leave field empty with // TODO: comment if not confirmed.
+// Dates, email, CV link, photo and social links are kept exactly as
+// supplied in the previous version — verify them against the CV
+// before pushing to the public repo.
 // ============================================================
 
 export const siteConfig = {
@@ -12,7 +16,7 @@ export const siteConfig = {
   subtitle:
     "I turn messy sales and distribution data into dashboards and decisions. Currently at PT Amerta Indah Otsuka.",
   description:
-    "Portfolio of Novrian Pratama — Data Analyst with hands-on experience in FMCG industry, building dashboards and data pipelines using SQL, Python, Power BI, and Looker Studio.",
+    "Portfolio of Novrian Pratama: FMCG visibility monitoring at PT Amerta Indah Otsuka, sales analytics, and logistics network quality.",
   location: "South Jakarta, Indonesia",
   photo: "/profile.jpg",
 
@@ -33,7 +37,7 @@ export const siteConfig = {
   // ── ABOUT ─────────────────────────────────────────────────
   // PRD §6.3: two position sentences + one proof sentence. No skill list.
   aboutMe:
-    "I am a recent Information Systems graduate with hands-on experience in data analytics and business intelligence, focused on the FMCG industry. I have worked across four organisations — building dashboards, processing large datasets, and translating data into decisions that teams can act on. At PT Amerta Indah Otsuka, I built a Python pipeline that processes 3,600+ audit records weekly and consolidated 62,000+ visibility records into a Looker Studio dashboard used for national trade monitoring.",
+    "I am a recent Information Systems graduate with hands-on experience in data analytics and business intelligence, focused on the FMCG industry. I have worked across four organisations — building dashboards, processing large datasets, and translating data into decisions that teams can act on. At PT Amerta Indah Otsuka, I work on national General Trade visibility monitoring, processing 3,600+ audit records weekly and consolidating 62,000+ visibility records into a Looker Studio dashboard.",
 
   // ── SKILLS ────────────────────────────────────────────────
   // PRD §6.6: grouped, no percentages, no progress bars.
@@ -41,7 +45,7 @@ export const siteConfig = {
   skillGroups: [
     {
       label: "Data Analysis & Visualisation",
-      tools: ["SQL", "Python", "Power BI", "Looker Studio", "Tableau", "Google Sheets"],
+      tools: ["Python", "Power BI", "Looker Studio", "Tableau", "Google Sheets"],
     },
     {
       label: "Database & Engineering Tools",
@@ -49,7 +53,7 @@ export const siteConfig = {
     },
     {
       label: "Productivity & Collaboration",
-      tools: ["Git", "Notion", "Figma (basic)"],
+      tools: ["Git", "Notion"],
     },
   ],
 
@@ -62,8 +66,8 @@ export const siteConfig = {
       title: "Sales Digital Business Application Intern",
       dateRange: "Aug 2026 – Present",
       bullets: [
-        "Built a Python pipeline (Google Colab) that processes 3,600+ audit records weekly for National General Trade Visibility Monitoring.",
-        "Consolidated 62,000+ visibility records from multiple Excel sources into a MySQL database powering a Looker Studio dashboard.",
+        "Process 3,600+ visibility audit records per week for National General Trade Visibility Monitoring.",
+        "Consolidated 62,000+ visibility records from multiple Excel and Google Sheets sources into a Looker Studio dashboard.",
         "Monitored display compliance across Region, Branch, Site, and Salesman dimensions, covering categories: AVAILABLE, NO DISPLAY, NO PHOTO, and photo-quality flags.",
         "Processed ~3,000 new field submissions per week from sales teams across multiple regions.",
       ],
@@ -73,9 +77,8 @@ export const siteConfig = {
       title: "Network Quality Specialist",
       dateRange: "Feb 2026 – Jun 2026",
       bullets: [
-        "Monitored operational performance and SLA compliance across 77 outlets in Riau, sustaining a 98% SLA rate.",
+        "Monitored operational performance and SLA compliance across 77 outlets, sustaining a 98% SLA rate.",
         "Processed 200,000+ logistics records using Excel Power Query for exception handling and outlet performance analysis.",
-        "Tracked and reported 80–120 daily shipment exceptions to support continuous improvement initiatives.",
       ],
     },
     {
@@ -83,8 +86,8 @@ export const siteConfig = {
       title: "Area Marketing Intern",
       dateRange: "Aug 2025 – Dec 2025",
       bullets: [
-        // TODO: add verified bullets — no numbers confirmed yet
-        "Supported area marketing operations and field data collection across assigned territories.",
+        "Achieved 60% product trial conversion.",
+        "Built 15+ partnerships from 50+ senior high schools evaluated.",
       ],
     },
     {
@@ -92,8 +95,7 @@ export const siteConfig = {
       title: "Associate Project Manager Intern",
       dateRange: "Nov 2024 – Feb 2025",
       bullets: [
-        // TODO: add verified bullets — no numbers confirmed yet
-        "Assisted project management activities, coordinating tasks and tracking progress across ongoing client projects.",
+        "Delivered 100% on-time milestones with a 7-person team across 8 sprints.",
       ],
     },
   ],
@@ -106,7 +108,7 @@ export const siteConfig = {
       slug: "otsuka-visibility-monitoring",
       name: "National GT Visibility Monitoring — PT Amerta Indah Otsuka",
       description:
-        "Built an end-to-end data pipeline and Looker Studio dashboard to monitor good-display compliance in general trade. Processed 62,000+ cumulative visibility records and 3,600+ weekly audit entries via an automated Python pipeline.",
+        "Consolidated visibility audit data into a Looker Studio dashboard to monitor display compliance in national General Trade. Processed 62,000+ cumulative visibility records and 3,600+ weekly audit entries.",
       tools: ["Python", "MySQL", "Looker Studio", "Google Sheets", "Excel"],
       status: "live", // "live" | "in-progress"
       // liveLink: null, // TODO: Looker Studio link — not open-sourced yet
@@ -115,7 +117,7 @@ export const siteConfig = {
       slug: "fmcg-sales-dataset",
       name: "FMCG Sales Performance Analysis",
       description:
-        "Exploratory and diagnostic analysis of a public FMCG sales dataset, modelling sales performance drivers using Power BI with DAX measures. Project is ongoing.",
+        "Exploratory and diagnostic analysis of a FMCG sales dataset, modelling sales performance drivers using Power BI with DAX measures. Project is ongoing.",
       tools: ["Power BI", "DAX", "Excel"],
       status: "in-progress",
       // repoLink: null, // TODO: repo not yet published
@@ -124,8 +126,8 @@ export const siteConfig = {
       slug: "jnt-network-quality",
       name: "Operational Performance & SLA Monitoring — J&T Cargo",
       description:
-        "Designed an Excel-based operational dashboard to monitor SLA compliance, shipment exceptions, and outlet performance for 77 outlets across Riau. Processed 200,000+ logistics records using Excel Power Query.",
-      tools: ["Excel", "Power Query", "Power BI"],
+        "Designed an Excel-based operational dashboard to monitor SLA compliance, shipment exceptions, and outlet performance for 77 outlets. Processed 200,000+ logistics records using Excel Power Query.",
+      tools: ["Excel", "Power Query"],
       status: "live",
     },
   ],
