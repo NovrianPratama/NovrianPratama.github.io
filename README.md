@@ -45,14 +45,16 @@ npm run build
 
 ```
 src/
-  config.ts          # Site content: identity, about, skills, experience, projects, education
-  components/        # Header, Hero, About, Experience, Projects, Skills, Education, Contact, Footer
+  config.ts          # Site content: identity, about, skills, experience, projects, education, certifications, organizations, awards
+  components/        # Header, Hero, About, Experience, Projects, Skills, Education, Certifications, Organizations, Awards, Contact, Footer
+  icons/             # skillIcons.ts (inline Simple Icons SVG paths)
   pages/             # index.astro (home page)
   styles/            # global.css
 public/
-  profile.jpg        # Profile photo
-  favicon.svg        # Site favicon
-.github/workflows/   # deploy.yml (GitHub Pages deployment)
+  profile.jpg              # Profile photo
+  project-placeholder.svg  # Project card placeholder image
+  favicon.svg              # Site favicon
+.github/workflows/         # deploy.yml (GitHub Pages deployment)
 ```
 
 ## Deployment

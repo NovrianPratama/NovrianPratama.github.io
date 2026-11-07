@@ -5,6 +5,9 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasCertifications = siteConfig.certifications && siteConfig.certifications.length > 0;
+const hasOrganizations = siteConfig.organizations && siteConfig.organizations.length > 0;
+const hasAwards = siteConfig.awards && siteConfig.awards.length > 0;
 const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.photo.replace(/^\//, "")}`;
 ---
 
@@ -12,9 +15,9 @@ const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.p
   id="header"
   class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-200"
 >
-  <nav class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12 py-3 flex items-center justify-between">
+  <nav class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12 py-3 flex items-center justify-between gap-4">
     <!-- Avatar + Name -->
-    <a href="#hero" class="flex items-center gap-3 text-sm font-semibold text-gray-900 dark:text-gray-100 hover:opacity-80 transition-opacity">
+    <a href="#hero" class="flex items-center gap-3 text-sm font-semibold text-gray-900 dark:text-gray-100 hover:opacity-80 transition-opacity flex-shrink-0">
       <img
         src={avatarSrc}
         alt={siteConfig.name}
@@ -22,46 +25,67 @@ const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.p
         height="38"
         class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover object-top ring-2 ring-gray-200 dark:ring-gray-700"
       />
-      <span class="hidden sm:inline">{siteConfig.name}</span>
+      <span class="hidden xl:inline">{siteConfig.name}</span>
     </a>
 
     <!-- Desktop Nav links -->
-    <ul class="hidden md:flex items-center gap-6">
+    <ul class="hidden lg:flex items-center gap-4 xl:gap-5">
       <li>
-        <a href="#about" class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+        <a href="#about" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
           About
         </a>
       </li>
       {hasExperience && (
         <li>
-          <a href="#experience" class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+          <a href="#experience" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
             Experience
           </a>
         </li>
       )}
       {hasProjects && (
         <li>
-          <a href="#projects" class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+          <a href="#projects" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
             Projects
           </a>
         </li>
       )}
       {hasSkills && (
         <li>
-          <a href="#skills" class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+          <a href="#skills" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
             Skills
           </a>
         </li>
       )}
       {hasEducation && (
         <li>
-          <a href="#education" class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+          <a href="#education" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
             Education
           </a>
         </li>
       )}
+      {hasCertifications && (
+        <li>
+          <a href="#certifications" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+            Certifications
+          </a>
+        </li>
+      )}
+      {hasOrganizations && (
+        <li>
+          <a href="#organizations" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+            Organizations
+          </a>
+        </li>
+      )}
+      {hasAwards && (
+        <li>
+          <a href="#awards" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+            Awards
+          </a>
+        </li>
+      )}
       <li>
-        <a href="#contact" class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
+        <a href="#contact" class="text-xs xl:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors font-medium py-2">
           Contact
         </a>
       </li>
@@ -70,7 +94,7 @@ const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.p
           href={siteConfig.cv}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center min-h-[40px] px-4 py-2 rounded-lg text-sm font-semibold text-white transition-opacity duration-200 hover:opacity-90"
+          class="inline-flex items-center justify-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-white transition-opacity duration-200 hover:opacity-90"
           style={`background-color: ${siteConfig.accentColor}`}
         >
           CV
@@ -79,7 +103,7 @@ const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.p
     </ul>
 
     <!-- Right controls: Theme Toggle + Mobile Hamburger -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 flex-shrink-0">
       <button
         id="theme-toggle"
         type="button"
@@ -105,7 +129,7 @@ const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.p
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-menu-panel"
-        class="md:hidden w-11 h-11 inline-flex items-center justify-center rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+        class="lg:hidden w-11 h-11 inline-flex items-center justify-center rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
       >
         <!-- Tabler menu-2 icon -->
         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -121,7 +145,7 @@ const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.p
   <!-- Mobile menu panel -->
   <div
     id="mobile-menu-panel"
-    class="hidden md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-5 pt-3 pb-6 shadow-lg"
+    class="hidden lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-5 pt-3 pb-6 shadow-lg max-h-[80vh] overflow-y-auto"
   >
     <div class="flex items-center justify-between pb-3 mb-2 border-b border-gray-100 dark:border-gray-800">
       <span class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">Navigation</span>
@@ -170,6 +194,27 @@ const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.p
         <li>
           <a href="#education" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-900">
             Education
+          </a>
+        </li>
+      )}
+      {hasCertifications && (
+        <li>
+          <a href="#certifications" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-900">
+            Certifications
+          </a>
+        </li>
+      )}
+      {hasOrganizations && (
+        <li>
+          <a href="#organizations" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-900">
+            Organizations
+          </a>
+        </li>
+      )}
+      {hasAwards && (
+        <li>
+          <a href="#awards" class="mobile-nav-link flex items-center min-h-[44px] px-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-900">
+            Awards
           </a>
         </li>
       )}

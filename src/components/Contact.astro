@@ -124,13 +124,20 @@ import { siteConfig } from "../config";
         </div>
       </div>
 
-      <!-- Right Column: Client-side mailto Form -->
+      <!-- Right Column: FormSubmit POST Form -->
       <div class="lg:col-span-7">
         <form
           id="contact-form"
-          data-recipient={siteConfig.social.email}
+          action={`https://formsubmit.co/${siteConfig.social.email}`}
+          method="POST"
           class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm space-y-5"
         >
+          <!-- FormSubmit configuration fields -->
+          <input type="hidden" name="_subject" value="New portfolio contact" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://novrianpratama.my.id/#contact" />
+
           <div>
             <label for="contact-name" class="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
               Name
@@ -174,11 +181,12 @@ import { siteConfig } from "../config";
           </div>
 
           <button
+            id="contact-submit-btn"
             type="submit"
             class="w-full min-h-[46px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90 cursor-pointer shadow-sm"
             style={`background-color: ${siteConfig.accentColor}`}
           >
-            <span>Send message</span>
+            <span id="contact-submit-text">Send message</span>
             <!-- Tabler icon: send (paper-plane) -->
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -193,6 +201,16 @@ import { siteConfig } from "../config";
             aria-live="polite"
             class="hidden text-sm font-medium text-teal-700 dark:text-teal-400 text-center pt-1"
           ></p>
+
+          <p class="text-xs text-gray-500 dark:text-gray-400 text-center pt-1">
+            Or email me directly at{" "}
+            <a
+              href={`mailto:${siteConfig.social.email}`}
+              class="font-medium text-teal-700 dark:text-teal-400 hover:underline"
+            >
+              {siteConfig.social.email}
+            </a>
+          </p>
         </form>
       </div>
 
@@ -203,8 +221,10 @@ import { siteConfig } from "../config";
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const statusEl = document.getElementById("contact-status");
+  const submitBtn = document.getElementById("contact-submit-btn") as HTMLButtonElement | null;
+  const submitText = document.getElementById("contact-submit-text");
 
-  form?.addEventListener("submit", (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const nameInput = document.getElementById("contact-name") as HTMLInputElement | null;
     const emailInput = document.getElementById("contact-email") as HTMLInputElement | null;
@@ -223,16 +243,38 @@ import { siteConfig } from "../config";
       return;
     }
 
-    const recipient = form.getAttribute("data-recipient") || "novrianprtama2@gmail.com";
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    const mailtoUrl = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    if (submitBtn && submitText) {
+      submitBtn.disabled = true;
+      submitText.textContent = "Sending...";
+    }
 
-    window.location.href = mailtoUrl;
+    try {
+      const formData = new FormData(form);
+      const response = await fetch("https://formsubmit.co/ajax/novrianprtama2@gmail.com", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
 
-    if (statusEl) {
-      statusEl.textContent = "Your email client has been opened with your message prepared.";
-      statusEl.classList.remove("hidden");
+      if (response.ok) {
+        form.reset();
+        if (statusEl) {
+          statusEl.textContent = "Thank you! Your message has been sent successfully.";
+          statusEl.classList.remove("hidden");
+        }
+      } else {
+        // Fallback to standard form POST redirect if AJAX is not yet activated
+        form.submit();
+      }
+    } catch (err) {
+      form.submit();
+    } finally {
+      if (submitBtn && submitText) {
+        submitBtn.disabled = false;
+        submitText.textContent = "Send message";
+      }
     }
   });
 </script>

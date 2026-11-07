@@ -1,11 +1,11 @@
 // ============================================================
-// SITE CONFIGURATION — Novrian Pratama Portfolio
+// SITE CONFIGURATION: Novrian Pratama Portfolio
 // Last updated: 1 November 2026
-// Fixed: 6 November 2026 — audit fixes, see audit notes in chat.
+// Fixed: 6 November 2026: audit fixes, see audit notes in chat.
 // Rule: NEVER fabricate numbers, links, dates, or company names.
 //       Leave field empty with // TODO: comment if not confirmed.
 // Dates, email, CV link, photo and social links are kept exactly as
-// supplied in the previous version — verify them against the CV
+// supplied in the previous version: verify them against the CV
 // before pushing to the public repo.
 // ============================================================
 
@@ -20,7 +20,7 @@ export const siteConfig = {
   location: "South Jakarta, Indonesia",
   photo: "/profile.jpg",
 
-  // Accent color — PRD §8.2: single teal accent
+  // Accent color: PRD §8.2: single teal accent
   accentColor: "#0F766E",
 
   social: {
@@ -29,17 +29,17 @@ export const siteConfig = {
     github: "https://github.com/NovrianPratama",
     medium: "https://medium.com/@novrianprtama2",
     kaggle: "https://www.kaggle.com/novrian02",
-    // twitter: omitted — not in scope (PRD §4)
+    // twitter: omitted: not in scope (PRD §4)
   },
 
   cv: "https://drive.google.com/file/d/1dycjwS_a-ARQlgVVWnA3XiNbK2r9PpdM/view?usp=sharing",
 
-  // ── ABOUT ─────────────────────────────────────────────────
+  // ABOUT
   // PRD §6.3: two position sentences + one proof sentence. No skill list.
   aboutMe:
     "I am a recent Information Systems graduate with hands-on experience in data analytics and business intelligence, focused on the FMCG industry. I have worked across four organisations, building dashboards, processing large datasets, and translating data into decisions that teams can act on. At PT Amerta Indah Otsuka, I work on national General Trade visibility monitoring, processing 3,600+ audit records weekly and consolidating 62,000+ visibility records into a Looker Studio dashboard.",
 
-  // ── SKILLS ────────────────────────────────────────────────
+  // SKILLS
   // PRD §6.6: grouped, no percentages, no progress bars.
   // Copy rule §6.1: write as "I have experience using X."
   skillGroups: [
@@ -57,9 +57,9 @@ export const siteConfig = {
     },
   ],
 
-  // ── EXPERIENCE ────────────────────────────────────────────
+  // EXPERIENCE
   // PRD §6.4: four entries, FMCG anchor first.
-  // Bullets: only verified numbers — no fabrication.
+  // Bullets: only verified numbers: no fabrication.
   experience: [
     {
       company: "PT Amerta Indah Otsuka",
@@ -100,19 +100,18 @@ export const siteConfig = {
     },
   ],
 
-  // ── PROJECTS ──────────────────────────────────────────────
-  // PRD §7: three case studies. Slug-based links to /projects/[slug].
-  // link: null = no external link; slug = internal case study page.
+  // PROJECTS
+  // PRD §7: three real case studies + three coming-soon duplicate placeholders (6 total).
   projects: [
     {
       slug: "otsuka-visibility-monitoring",
       name: "National GT Visibility Monitoring: PT Amerta Indah Otsuka",
       description:
         "Consolidated visibility audit data into a Looker Studio dashboard to monitor display compliance in national General Trade. Processed 62,000+ cumulative visibility records and 3,600+ weekly audit entries.",
-      tools: ["Python", "MySQL", "Looker Studio", "Google Sheets", "Excel"],
-      status: "live", // "live" | "in-progress"
+      tools: ["Looker Studio", "Google Sheets", "Excel"],
+      status: "live",
       image: "/project-placeholder.svg",
-      // liveLink: null, // TODO: Looker Studio link — not open-sourced yet
+      // liveLink: null, // TODO: Looker Studio link: not open-sourced yet
     },
     {
       slug: "fmcg-sales-dataset",
@@ -135,15 +134,34 @@ export const siteConfig = {
     },
     {
       slug: "",
-      name: "New Project",
-      description: "Details coming soon. This project will be added here.",
-      tools: ["Coming soon"],
+      name: "National GT Visibility Monitoring: PT Amerta Indah Otsuka",
+      description:
+        "Consolidated visibility audit data into a Looker Studio dashboard to monitor display compliance in national General Trade. Processed 62,000+ cumulative visibility records and 3,600+ weekly audit entries.",
+      tools: ["Looker Studio", "Google Sheets", "Excel"],
+      status: "coming-soon",
+      image: "/project-placeholder.svg",
+    },
+    {
+      slug: "",
+      name: "FMCG Sales Performance Analysis",
+      description:
+        "Exploratory and diagnostic analysis of a FMCG sales dataset, modelling sales performance drivers using Power BI with DAX measures. Project is ongoing.",
+      tools: ["Power BI", "DAX", "Excel"],
+      status: "coming-soon",
+      image: "/project-placeholder.svg",
+    },
+    {
+      slug: "",
+      name: "Operational Performance & SLA Monitoring: J&T Cargo",
+      description:
+        "Designed an Excel-based operational dashboard to monitor SLA compliance, shipment exceptions, and outlet performance for 77 outlets. Processed 200,000+ logistics records using Excel Power Query.",
+      tools: ["Excel", "Power Query"],
       status: "coming-soon",
       image: "/project-placeholder.svg",
     },
   ],
 
-  // ── EDUCATION ─────────────────────────────────────────────
+  // EDUCATION
   // PRD §6.7: GPA 3.89 only here, not in Hero or About.
   education: [
     {
@@ -153,6 +171,143 @@ export const siteConfig = {
       achievements: [
         "GPA: 3.89 / 4.00",
         // TODO: add thesis title if Novrian wants to display it
+      ],
+    },
+  ],
+
+  // CERTIFICATIONS
+  certifications: [
+    {
+      name: "Coding Camp: Machine Learning Engineer",
+      issuer: "DBS Foundation and Dicoding",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Fundamentals of Structured Query Language (SQL)",
+      issuer: "Dicoding Indonesia",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Applied Machine Learning",
+      issuer: "Dicoding Indonesia",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Data Analysis with Python",
+      issuer: "Dicoding Indonesia",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "EnglishScore CEFR B1 (Score: 349)",
+      issuer: "British Council",
+      year: "2024",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Microsoft Excel Basic to Advance Excel Formulas",
+      issuer: "Udemy",
+      year: "2026",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Power BI 101: Microsoft Power BI Essentials & Certification",
+      issuer: "Udemy (ExpertEase Education)",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Fundamentals of Data Processing",
+      issuer: "Dicoding Indonesia",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Machine Learning Development",
+      issuer: "Dicoding Indonesia",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "Practical Office Advanced (Computer Operation)",
+      issuer: "BNSP, LSP DITEKINDO",
+      year: "2024",
+      credentialUrl: "", // TODO: add credential URL
+    },
+    {
+      name: "TOEFL ITP (Score: 453)",
+      issuer: "ETS, UIN Suska Riau",
+      year: "2025",
+      credentialUrl: "", // TODO: add credential URL
+    },
+  ],
+
+  // ORGANIZATIONS
+  organizations: [
+    {
+      initials: "PR",
+      name: "Puzzle Research Data Technology (PREDATECH)",
+      location: "Pekanbaru, Riau",
+      role: "Chief Student Coordinator",
+      period: "Mar 2025 to Dec 2025",
+      bullets: [
+        "Led a 100+ member technology community, managing 6 division heads to drive talent and organizational growth.",
+        "Managed 3 development cohorts for 80+ participants across ML, Web, and Mobile tracks, achieving a 90% satisfaction rate.",
+        "Led the Predatech Goes To Industry program with PT Nutrifood, providing industry exposure for 35 student delegates.",
+      ],
+    },
+    {
+      initials: "GB",
+      name: "Generasi Baru Indonesia (GenBI) Riau",
+      location: "Pekanbaru, Riau",
+      role: "Member of Education & Culture Division",
+      period: "Apr 2024 to Dec 2024",
+      bullets: [
+        "Led the GeMAI AI seminar, coordinating 2 speakers and delivering technology education to 80+ participants.",
+        "Developed financial literacy programs for 30+ special needs students through the GenBI Goes to SLB Program.",
+        "Led the Rumah Singgah Tuan Kadi educational visit, coordinating 4 stakeholders and a 15-member committee to promote cultural heritage.",
+      ],
+    },
+    {
+      initials: "GD",
+      name: "Google Developer Student Clubs (GDSC)",
+      location: "Pekanbaru, Riau",
+      role: "Core Team Program & Partnerships Division",
+      period: "Oct 2023 to May 2024",
+      bullets: [
+        "Led the onboarding of 50+ new members, achieving 100% successful integration into the developer community.",
+        "Organized 6 Machine Learning Study Jam sessions for 30+ participants, supporting an 80% completion rate.",
+        "Built partnerships with 4 external organizations, increasing event participation and community engagement by 25%. ",
+      ],
+    },
+  ],
+
+  // AWARDS
+  awards: [
+    {
+      year: "2025",
+      items: [
+        'Speaker at "Digital Journey: Crafting Your Path for Better Future" Seminar, HIMASI UIN Sultan Syarif Kasim Riau',
+        "Awarded 1st Best Presentation for Project SGDs at Universiti Malaysia Terengganu",
+        'Published "Classification of E-Commerce Shipping Timeliness Using Supervised Learning Algorithm", PREDATECS Journal (Vol. 3 No. 1)',
+        "Selected for DBS Foundation Coding Camp: Machine Learning Engineer Learning Path",
+        "Selected as International Community Service (ISCE) Delegate,",
+        "Recognized as Best Active Student among 20+ participants in Krirk University's international English program",
+      ],
+    },
+    {
+      year: "2024",
+      items: [],
+    },
+    {
+      year: "2023",
+      items: [
+        "Bank Indonesia Scholarship Awardee",
+        "Abstract Accepted, Project Management Competition (PMC) 2024: Project Management Institute Indonesia (PMII).",
+        "Published a research paper in a SINTA-indexed national journal.",
       ],
     },
   ],
