@@ -306,48 +306,49 @@ export const siteConfig = {
       items: [
         {
           text: 'Speaker at "Digital Journey: Crafting Your Path for Better Future" Seminar, HIMASI UIN Sultan Syarif Kasim Riau',
-          credentialUrl: "", // TODO: add credential URL
+          link: "", // TODO: add source link
         },
         {
           text: "Awarded 1st Best Presentation for Project SGDs at Universiti Malaysia Terengganu",
-          credentialUrl: "", // TODO: add credential URL
+          link: "", // TODO: add source link
         },
         {
           text: 'Published "Classification of E-Commerce Shipping Timeliness Using Supervised Learning Algorithm", PREDATECS Journal (Vol. 3 No. 1)',
-          credentialUrl: "", // TODO: add credential URL
+          link: "", // TODO: add source link
         },
         {
           text: "Selected for DBS Foundation Coding Camp: Machine Learning Engineer Learning Path",
-          credentialUrl: "", // TODO: add credential URL
+          link: "", // TODO: add source link
         },
         {
           text: "Selected as International Community Service (ISCE) Delegate,",
-          credentialUrl: "", // TODO: add credential URL
+          link: "", // TODO: add source link
         },
         {
-          text: "Recognized as Best Active Student among 20+ participants in Krirk University's international English program",
-          credentialUrl: "", // TODO: add credential URL
+          text: "Recognized as Best Active Student among 20+ participants in Krirk University's international English program.",
+          link: "", // TODO: add source link
         },
       ],
     },
     {
       year: "2024",
-      items: [] as { text: string; credentialUrl: string }[],
+      items: [
+        {
+          text: "Bank Indonesia Scholarship Awardee",
+          link: "", // TODO: add source link
+        },
+        {
+          text: "Abstract Accepted, Project Management Competition (PMC) 2024: Project Management Institute Indonesia (PMII).",
+          link: "", // TODO: add source link
+        },
+      ],
     },
     {
       year: "2023",
       items: [
         {
-          text: "Bank Indonesia Scholarship Awardee",
-          credentialUrl: "", // TODO: add credential URL
-        },
-        {
-          text: "Abstract Accepted, Project Management Competition (PMC) 2024: Project Management Institute Indonesia (PMII).",
-          credentialUrl: "", // TODO: add credential URL
-        },
-        {
           text: "Published a research paper in a SINTA-indexed national journal.",
-          credentialUrl: "", // TODO: add credential URL
+          link: "", // TODO: add source link
         },
       ],
     },
