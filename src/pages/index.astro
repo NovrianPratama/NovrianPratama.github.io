@@ -20,19 +20,32 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={siteConfig.description} />
     <!-- Open Graph -->
-    <meta property="og:title" content={`${siteConfig.name} — ${siteConfig.title}`} />
+    <meta property="og:title" content={`${siteConfig.name}: ${siteConfig.title}`} />
     <meta property="og:description" content={siteConfig.description} />
     <meta property="og:type" content="website" />
-    <!-- Inter font — PRD §8.1 -->
+    <!-- Inter font: PRD §8.1 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>{siteConfig.name} — {siteConfig.title}</title>
+    <title>{siteConfig.name}: {siteConfig.title}</title>
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (stored === "dark" || (!stored && prefersDark)) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body>
+  <body class="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-200">
     <Header />
     <main>
       <Hero />

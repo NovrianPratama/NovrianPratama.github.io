@@ -111,6 +111,7 @@ export const siteConfig = {
         "Consolidated visibility audit data into a Looker Studio dashboard to monitor display compliance in national General Trade. Processed 62,000+ cumulative visibility records and 3,600+ weekly audit entries.",
       tools: ["Python", "MySQL", "Looker Studio", "Google Sheets", "Excel"],
       status: "live", // "live" | "in-progress"
+      image: "/project-placeholder.svg",
       // liveLink: null, // TODO: Looker Studio link — not open-sourced yet
     },
     {
@@ -120,6 +121,7 @@ export const siteConfig = {
         "Exploratory and diagnostic analysis of a FMCG sales dataset, modelling sales performance drivers using Power BI with DAX measures. Project is ongoing.",
       tools: ["Power BI", "DAX", "Excel"],
       status: "in-progress",
+      image: "/project-placeholder.svg",
       // repoLink: null, // TODO: repo not yet published
     },
     {
@@ -129,6 +131,15 @@ export const siteConfig = {
         "Designed an Excel-based operational dashboard to monitor SLA compliance, shipment exceptions, and outlet performance for 77 outlets. Processed 200,000+ logistics records using Excel Power Query.",
       tools: ["Excel", "Power Query"],
       status: "live",
+      image: "/project-placeholder.svg",
+    },
+    {
+      slug: "",
+      name: "New Project",
+      description: "Details coming soon. This project will be added here.",
+      tools: ["Coming soon"],
+      status: "coming-soon",
+      image: "/project-placeholder.svg",
     },
   ],
 

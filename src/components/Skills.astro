@@ -4,36 +4,35 @@ const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
 ---
 
 {hasSkills && (
-  <section id="skills" class="px-8 py-16 sm:px-12 sm:py-20 md:px-24 md:py-24 bg-gray-50">
+  <section id="skills" class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 bg-gray-50 dark:bg-gray-900/60 transition-colors duration-200">
     <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
         <!-- Label -->
         <div class="lg:col-span-4">
-          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
             Skills
           </h2>
           <div
-            class="w-16 h-1.5 mt-3 rounded-full"
+            class="w-14 h-1.5 mt-2.5 rounded-full"
             style={`background-color: ${siteConfig.accentColor}`}
           ></div>
-          <!-- PRD §6.1 rule note: copy only states "I have experience using X." -->
-          <p class="mt-4 text-sm text-gray-500 leading-relaxed">
+          <p class="mt-3 text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
             Tools and technologies I have experience using across data analytics and business intelligence projects.
           </p>
         </div>
 
         <!-- Skill groups -->
-        <div class="lg:col-span-8 space-y-8">
+        <div class="lg:col-span-8 space-y-6">
           {siteConfig.skillGroups.map((group) => (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
                 {group.label}
               </h3>
               <div class="flex flex-wrap gap-2.5">
                 {group.tools.map((tool) => (
                   <span
-                    class="px-4 py-2 rounded-lg text-sm font-medium bg-white border border-gray-200 text-gray-800 shadow-sm hover:border-gray-300 transition-colors duration-150"
+                    class="px-3.5 py-2 rounded-lg text-sm font-medium bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-800 dark:text-gray-200 shadow-sm hover:border-gray-300 dark:hover:border-gray-700 transition-colors duration-150"
                   >
                     {tool}
                   </span>
