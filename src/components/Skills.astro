@@ -5,20 +5,17 @@ const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
 ---
 
 {hasSkills && (
-  <section id="skills" class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 bg-gray-50 dark:bg-gray-900/60 transition-colors duration-200">
+  <section id="skills" class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 bg-gray-50 dark:bg-zinc-900 transition-colors duration-200">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
         <!-- Label -->
         <div class="lg:col-span-4">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">
             Skills
           </h2>
-          <div
-            class="w-14 h-1.5 mt-2.5 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`}
-          ></div>
-          <p class="mt-3 text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+          <div class="w-14 h-1.5 mt-2.5 rounded-full bg-[#0F766E] dark:bg-teal-400"></div>
+          <p class="mt-3 text-sm text-gray-500 dark:text-zinc-400 leading-relaxed">
             Tools and technologies I have experience using across data analytics and business intelligence projects.
           </p>
         </div>
@@ -27,7 +24,7 @@ const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
         <div class="lg:col-span-8 space-y-6">
           {siteConfig.skillGroups.map((group) => (
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
+              <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-zinc-500 mb-3">
                 {group.label}
               </h3>
               <div class="flex flex-wrap gap-2.5">
@@ -35,7 +32,7 @@ const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
                   const iconPath = skillIcons[tool];
                   return (
                     <span
-                      class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-800 dark:text-gray-200 shadow-sm hover:border-gray-300 dark:hover:border-gray-700 transition-colors duration-150"
+                      class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium bg-white dark:bg-zinc-800 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-zinc-100 shadow-sm hover:border-gray-300 dark:hover:bg-white/10 transition-colors duration-150"
                     >
                       {iconPath ? (
                         <svg

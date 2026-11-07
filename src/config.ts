@@ -181,66 +181,77 @@ export const siteConfig = {
       name: "Coding Camp: Machine Learning Engineer",
       issuer: "DBS Foundation and Dicoding",
       year: "2025",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Fundamentals of Structured Query Language (SQL)",
       issuer: "Dicoding Indonesia",
       year: "2025",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Applied Machine Learning",
       issuer: "Dicoding Indonesia",
       year: "2025",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Data Analysis with Python",
       issuer: "Dicoding Indonesia",
       year: "2025",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "EnglishScore CEFR B1 (Score: 349)",
       issuer: "British Council",
       year: "2024",
+      category: "Language",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Microsoft Excel Basic to Advance Excel Formulas",
       issuer: "Udemy",
       year: "2026",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Power BI 101: Microsoft Power BI Essentials & Certification",
       issuer: "Udemy (ExpertEase Education)",
       year: "2025",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Fundamentals of Data Processing",
       issuer: "Dicoding Indonesia",
       year: "2025",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Machine Learning Development",
       issuer: "Dicoding Indonesia",
       year: "2025",
+      category: "Technology",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "Practical Office Advanced (Computer Operation)",
       issuer: "BNSP, LSP DITEKINDO",
       year: "2024",
+      category: "Other",
       credentialUrl: "", // TODO: add credential URL
     },
     {
       name: "TOEFL ITP (Score: 453)",
       issuer: "ETS, UIN Suska Riau",
       year: "2025",
+      category: "Language",
       credentialUrl: "", // TODO: add credential URL
     },
   ],
@@ -253,6 +264,7 @@ export const siteConfig = {
       location: "Pekanbaru, Riau",
       role: "Chief Student Coordinator",
       period: "Mar 2025 to Dec 2025",
+      photos: [] as string[], // TODO: add activity photos
       bullets: [
         "Led a 100+ member technology community, managing 6 division heads to drive talent and organizational growth.",
         "Managed 3 development cohorts for 80+ participants across ML, Web, and Mobile tracks, achieving a 90% satisfaction rate.",
@@ -265,6 +277,7 @@ export const siteConfig = {
       location: "Pekanbaru, Riau",
       role: "Member of Education & Culture Division",
       period: "Apr 2024 to Dec 2024",
+      photos: [] as string[], // TODO: add activity photos
       bullets: [
         "Led the GeMAI AI seminar, coordinating 2 speakers and delivering technology education to 80+ participants.",
         "Developed financial literacy programs for 30+ special needs students through the GenBI Goes to SLB Program.",
@@ -277,6 +290,7 @@ export const siteConfig = {
       location: "Pekanbaru, Riau",
       role: "Core Team Program & Partnerships Division",
       period: "Oct 2023 to May 2024",
+      photos: [] as string[], // TODO: add activity photos
       bullets: [
         "Led the onboarding of 50+ new members, achieving 100% successful integration into the developer community.",
         "Organized 6 Machine Learning Study Jam sessions for 30+ participants, supporting an 80% completion rate.",
@@ -290,24 +304,51 @@ export const siteConfig = {
     {
       year: "2025",
       items: [
-        'Speaker at "Digital Journey: Crafting Your Path for Better Future" Seminar, HIMASI UIN Sultan Syarif Kasim Riau',
-        "Awarded 1st Best Presentation for Project SGDs at Universiti Malaysia Terengganu",
-        'Published "Classification of E-Commerce Shipping Timeliness Using Supervised Learning Algorithm", PREDATECS Journal (Vol. 3 No. 1)',
-        "Selected for DBS Foundation Coding Camp: Machine Learning Engineer Learning Path",
-        "Selected as International Community Service (ISCE) Delegate,",
-        "Recognized as Best Active Student among 20+ participants in Krirk University's international English program",
+        {
+          text: 'Speaker at "Digital Journey: Crafting Your Path for Better Future" Seminar, HIMASI UIN Sultan Syarif Kasim Riau',
+          credentialUrl: "", // TODO: add credential URL
+        },
+        {
+          text: "Awarded 1st Best Presentation for Project SGDs at Universiti Malaysia Terengganu",
+          credentialUrl: "", // TODO: add credential URL
+        },
+        {
+          text: 'Published "Classification of E-Commerce Shipping Timeliness Using Supervised Learning Algorithm", PREDATECS Journal (Vol. 3 No. 1)',
+          credentialUrl: "", // TODO: add credential URL
+        },
+        {
+          text: "Selected for DBS Foundation Coding Camp: Machine Learning Engineer Learning Path",
+          credentialUrl: "", // TODO: add credential URL
+        },
+        {
+          text: "Selected as International Community Service (ISCE) Delegate,",
+          credentialUrl: "", // TODO: add credential URL
+        },
+        {
+          text: "Recognized as Best Active Student among 20+ participants in Krirk University's international English program",
+          credentialUrl: "", // TODO: add credential URL
+        },
       ],
     },
     {
       year: "2024",
-      items: [],
+      items: [] as { text: string; credentialUrl: string }[],
     },
     {
       year: "2023",
       items: [
-        "Bank Indonesia Scholarship Awardee",
-        "Abstract Accepted, Project Management Competition (PMC) 2024: Project Management Institute Indonesia (PMII).",
-        "Published a research paper in a SINTA-indexed national journal.",
+        {
+          text: "Bank Indonesia Scholarship Awardee",
+          credentialUrl: "", // TODO: add credential URL
+        },
+        {
+          text: "Abstract Accepted, Project Management Competition (PMC) 2024: Project Management Institute Indonesia (PMII).",
+          credentialUrl: "", // TODO: add credential URL
+        },
+        {
+          text: "Published a research paper in a SINTA-indexed national journal.",
+          credentialUrl: "", // TODO: add credential URL
+        },
       ],
     },
   ],

@@ -2,29 +2,23 @@
 import { siteConfig } from "../config";
 ---
 
-<section id="contact" class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 bg-gray-50 dark:bg-gray-900/60 transition-colors duration-200">
+<section id="contact" class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 bg-gray-50 dark:bg-zinc-900 transition-colors duration-200">
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
       <!-- Left Column: Eyebrow, Heading, Text, Email, Social Icons -->
       <div class="lg:col-span-5 space-y-6">
         <div>
-          <span
-            class="inline-block text-xs font-semibold uppercase tracking-widest pb-1 border-b-2 mb-3 text-teal-700 dark:text-teal-400"
-            style={`border-color: ${siteConfig.accentColor}`}
-          >
+          <span class="inline-block text-xs font-semibold uppercase tracking-widest pb-1 border-b-2 mb-3 text-teal-700 dark:text-teal-400 border-[#0F766E] dark:border-teal-400">
             Contact
           </span>
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">
             Contact
           </h2>
-          <div
-            class="w-14 h-1.5 mt-2.5 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`}
-          ></div>
+          <div class="w-14 h-1.5 mt-2.5 rounded-full bg-[#0F766E] dark:bg-teal-400"></div>
         </div>
 
-        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+        <p class="text-base sm:text-lg text-gray-600 dark:text-zinc-400 leading-relaxed">
           Open to Data Analyst, BI Analyst, and Business Analyst roles, especially in FMCG. Feel free to reach out or view my work.
         </p>
 
@@ -32,7 +26,7 @@ import { siteConfig } from "../config";
         <div>
           <a
             href={`mailto:${siteConfig.social.email}`}
-            class="inline-flex items-center gap-3 min-h-[44px] text-sm sm:text-base font-medium text-gray-800 dark:text-gray-200 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+            class="inline-flex items-center gap-3 min-h-[44px] text-sm sm:text-base font-medium text-gray-800 dark:text-zinc-100 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-teal-700 dark:text-teal-400 flex-shrink-0">
               <rect width="20" height="16" x="2" y="4" rx="2"></rect>
@@ -44,7 +38,7 @@ import { siteConfig } from "../config";
 
         <!-- Social Icons Row -->
         <div class="pt-2">
-          <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
+          <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-zinc-500 mb-3">
             Find me on
           </p>
           <div class="flex flex-wrap items-center gap-2.5">
@@ -54,7 +48,7 @@ import { siteConfig } from "../config";
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-teal-600 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-800 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:border-teal-600 dark:hover:border-teal-400 hover:text-teal-700 dark:hover:text-teal-400 dark:hover:bg-white/10 transition-colors"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -71,7 +65,7 @@ import { siteConfig } from "../config";
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-teal-600 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-800 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:border-teal-600 dark:hover:border-teal-400 hover:text-teal-700 dark:hover:text-teal-400 dark:hover:bg-white/10 transition-colors"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -85,7 +79,7 @@ import { siteConfig } from "../config";
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Medium"
-                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-teal-600 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-800 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:border-teal-600 dark:hover:border-teal-400 hover:text-teal-700 dark:hover:text-teal-400 dark:hover:bg-white/10 transition-colors"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
@@ -98,7 +92,7 @@ import { siteConfig } from "../config";
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Kaggle"
-                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-teal-600 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-800 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:border-teal-600 dark:hover:border-teal-400 hover:text-teal-700 dark:hover:text-teal-400 dark:hover:bg-white/10 transition-colors"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.235.118-.353.354-.353h2.431c.234 0 .351.118.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.336"/>
@@ -111,7 +105,7 @@ import { siteConfig } from "../config";
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Download CV"
-                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-teal-600 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+                class="w-11 h-11 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-800 flex items-center justify-center text-gray-600 dark:text-zinc-400 hover:border-teal-600 dark:hover:border-teal-400 hover:text-teal-700 dark:hover:text-teal-400 dark:hover:bg-white/10 transition-colors"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -130,7 +124,7 @@ import { siteConfig } from "../config";
           id="contact-form"
           action="https://api.web3forms.com/submit"
           method="POST"
-          class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm space-y-5"
+          class="bg-white dark:bg-zinc-800 rounded-2xl border border-gray-200 dark:border-white/10 p-6 sm:p-8 shadow-sm space-y-5"
         >
           <!-- Web3Forms configuration fields -->
           <input type="hidden" name="access_key" value="a8c93dfb-2b42-4a0c-914a-aa3c425d2361" />
@@ -140,7 +134,7 @@ import { siteConfig } from "../config";
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
           <div>
-            <label for="contact-name" class="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
+            <label for="contact-name" class="block text-sm font-semibold text-gray-800 dark:text-zinc-100 mb-2">
               Name
             </label>
             <input
@@ -149,12 +143,12 @@ import { siteConfig } from "../config";
               type="text"
               required
               placeholder="Your name"
-              class="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:border-teal-600 dark:focus:border-teal-500"
+              class="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:border-teal-600 dark:focus:border-teal-400"
             />
           </div>
 
           <div>
-            <label for="contact-email" class="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
+            <label for="contact-email" class="block text-sm font-semibold text-gray-800 dark:text-zinc-100 mb-2">
               Email
             </label>
             <input
@@ -163,12 +157,12 @@ import { siteConfig } from "../config";
               type="email"
               required
               placeholder="you@example.com"
-              class="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:border-teal-600 dark:focus:border-teal-500"
+              class="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:border-teal-600 dark:focus:border-teal-400"
             />
           </div>
 
           <div>
-            <label for="contact-message" class="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
+            <label for="contact-message" class="block text-sm font-semibold text-gray-800 dark:text-zinc-100 mb-2">
               Message
             </label>
             <textarea
@@ -177,15 +171,14 @@ import { siteConfig } from "../config";
               rows="4"
               required
               placeholder="Write your message here..."
-              class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:border-teal-600 dark:focus:border-teal-500 resize-y"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-500 text-sm focus:outline-none focus:border-teal-600 dark:focus:border-teal-400 resize-y"
             ></textarea>
           </div>
 
           <button
             id="contact-submit-btn"
             type="submit"
-            class="w-full min-h-[46px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90 cursor-pointer shadow-sm"
-            style={`background-color: ${siteConfig.accentColor}`}
+            class="w-full min-h-[46px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-[#0F766E] dark:bg-teal-500 transition-opacity hover:opacity-90 cursor-pointer shadow-sm"
           >
             <span id="contact-submit-text">Send message</span>
             <!-- Tabler icon: send (paper-plane) -->
@@ -203,7 +196,7 @@ import { siteConfig } from "../config";
             class="hidden text-sm font-medium text-teal-700 dark:text-teal-400 text-center pt-1"
           ></p>
 
-          <p class="text-xs text-gray-500 dark:text-gray-400 text-center pt-1">
+          <p class="text-xs text-gray-500 dark:text-zinc-400 text-center pt-1">
             Or email me directly at{" "}
             <a
               href={`mailto:${siteConfig.social.email}`}
