@@ -1,8 +1,8 @@
-# Novrian Pratama — Data Analyst Portfolio
+# Novrian Pratama: Data Analyst Portfolio
 
-Personal portfolio website for Novrian Pratama, Data Analyst with a focus on FMCG.
+Personal portfolio website for Novrian Pratama, a Data & Business Intelligence Analyst focused on FMCG.
 
-**Live site:** https://novrianpratama.github.io/
+**Live site:** https://novrianpratama.my.id/
 
 ## About
 
@@ -14,9 +14,9 @@ Previously Network Quality Specialist at J&T Cargo Indonesia, Area Marketing Int
 
 | Project | What it covers |
 | --- | --- |
-| National GT Visibility Monitoring — PT Amerta Indah Otsuka | Looker Studio dashboard for display compliance in national General Trade. 3,600+ audit records per week, 62,000+ records consolidated. |
+| National GT Visibility Monitoring: PT Amerta Indah Otsuka | Looker Studio dashboard for display compliance in national General Trade. 3,600+ audit records per week, 62,000+ records consolidated. |
 | FMCG Sales Performance Analysis | Exploratory and diagnostic analysis of an FMCG sales dataset in Power BI with DAX measures. In progress. |
-| Operational Performance & SLA Monitoring — J&T Cargo | Excel-based dashboard for SLA compliance and outlet performance across 77 outlets at 98% SLA, from 200,000+ logistics records processed with Excel Power Query. |
+| Operational Performance & SLA Monitoring: J&T Cargo | Excel-based dashboard for SLA compliance, shipment exceptions, and outlet performance across 77 outlets at 98% SLA. 200,000+ logistics records processed with Excel Power Query. |
 
 ## Tech stack
 
@@ -24,7 +24,7 @@ Previously Network Quality Specialist at J&T Cargo Indonesia, Area Marketing Int
 - [Tailwind CSS](https://tailwindcss.com/) 4
 - TypeScript
 
-Content for every section lives in a single file, `src/config.ts`.
+Most site content (identity, about, skills, experience, projects, education) lives in a single file, `src/config.ts`.
 
 ## Run locally
 
@@ -45,19 +45,19 @@ npm run build
 
 ```
 src/
-  config.ts          # All site content: identity, experience, projects, skills
-  components/        # Hero, About, Experience, Projects, Skills, Education, Contact
-  pages/             # Home page and project case-study pages
-  styles/            # Global styles and design tokens
+  config.ts          # Site content: identity, about, skills, experience, projects, education
+  components/        # Header, Hero, About, Experience, Projects, Skills, Education, Contact, Footer
+  pages/             # index.astro (home page)
+  styles/            # global.css
 public/
   profile.jpg        # Profile photo
   favicon.svg        # Site favicon
-.github/workflows/  # Deploy to GitHub Pages
+.github/workflows/   # deploy.yml (GitHub Pages deployment)
 ```
 
 ## Deployment
 
-Deployed to GitHub Pages with GitHub Actions. Every push to `main` builds the site and publishes it to https://novrianpratama.github.io/
+Deployed to GitHub Pages with GitHub Actions. Every push to `main` builds the site and publishes it to https://novrianpratama.my.id/
 
 ## Contact
 
