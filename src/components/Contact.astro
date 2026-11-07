@@ -124,19 +124,20 @@ import { siteConfig } from "../config";
         </div>
       </div>
 
-      <!-- Right Column: FormSubmit POST Form -->
+      <!-- Right Column: Web3Forms POST Form -->
       <div class="lg:col-span-7">
         <form
           id="contact-form"
-          action={`https://formsubmit.co/${siteConfig.social.email}`}
+          action="https://api.web3forms.com/submit"
           method="POST"
           class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm space-y-5"
         >
-          <!-- FormSubmit configuration fields -->
-          <input type="hidden" name="_subject" value="New portfolio contact" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://novrianpratama.my.id/#contact" />
+          <!-- Web3Forms configuration fields -->
+          <input type="hidden" name="access_key" value="a8c93dfb-2b42-4a0c-914a-aa3c425d2361" />
+          <input type="hidden" name="subject" value="New portfolio contact" />
+          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+          <input type="hidden" name="redirect" value="https://novrianpratama.my.id/#contact" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
           <div>
             <label for="contact-name" class="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
@@ -250,22 +251,24 @@ import { siteConfig } from "../config";
 
     try {
       const formData = new FormData(form);
-      const response = await fetch("https://formsubmit.co/ajax/novrianprtama2@gmail.com", {
+      // Remove redirect field when submitting via AJAX so fetch receives JSON instead of a 302 redirect
+      formData.delete("redirect");
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           Accept: "application/json",
         },
         body: formData,
       });
+      const result = await response.json();
 
-      if (response.ok) {
+      if (response.ok && result.success) {
         form.reset();
         if (statusEl) {
           statusEl.textContent = "Thank you! Your message has been sent successfully.";
           statusEl.classList.remove("hidden");
         }
       } else {
-        // Fallback to standard form POST redirect if AJAX is not yet activated
         form.submit();
       }
     } catch (err) {
