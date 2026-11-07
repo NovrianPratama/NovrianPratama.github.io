@@ -11,16 +11,15 @@ const hasAwards = siteConfig.awards && siteConfig.awards.length > 0;
 const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.photo.replace(/^\//, "")}`;
 
 const navItems = [
-  { id: "about", label: "About", href: "#about", show: true, external: false },
-  { id: "experience", label: "Experience", href: "#experience", show: hasExperience, external: false },
-  { id: "projects", label: "Projects", href: "#projects", show: hasProjects, external: false },
-  { id: "skills", label: "Skills", href: "#skills", show: hasSkills, external: false },
-  { id: "education", label: "Education", href: "#education", show: hasEducation, external: false },
-  { id: "certifications", label: "Certifications", href: "#certifications", show: hasCertifications, external: false },
-  { id: "organizations", label: "Organizations", href: "#organizations", show: hasOrganizations, external: false },
-  { id: "awards", label: "Awards", href: "#awards", show: hasAwards, external: false },
-  { id: "contact", label: "Contact", href: "#contact", show: true, external: false },
-  { id: "cv", label: "CV", href: siteConfig.cv, show: Boolean(siteConfig.cv), external: true },
+  { id: "about", label: "About", href: "#about", show: true },
+  { id: "experience", label: "Experience", href: "#experience", show: hasExperience },
+  { id: "projects", label: "Projects", href: "#projects", show: hasProjects },
+  { id: "skills", label: "Skills", href: "#skills", show: hasSkills },
+  { id: "education", label: "Education", href: "#education", show: hasEducation },
+  { id: "certifications", label: "Certifications", href: "#certifications", show: hasCertifications },
+  { id: "organizations", label: "Organizations", href: "#organizations", show: hasOrganizations },
+  { id: "awards", label: "Awards", href: "#awards", show: hasAwards },
+  { id: "contact", label: "Contact", href: "#contact", show: true },
 ].filter((item) => item.show);
 ---
 
@@ -28,55 +27,53 @@ const navItems = [
   id="header"
   class="fixed top-0 left-0 right-0 w-full z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-gray-200/80 dark:border-white/10 transition-colors duration-200"
 >
-  <div class="max-w-6xl mx-auto w-full px-5 sm:px-8 lg:px-8 xl:px-12 py-2.5 flex items-center justify-between gap-2 xl:gap-3">
+  <div class="max-w-6xl mx-auto w-full px-5 sm:px-8 lg:px-8 xl:px-12 py-3 flex items-center justify-between gap-2 xl:gap-3">
     <!-- Far Left: Circular Photo Avatar + "RYAN" Only -->
     <a
       href="#hero"
       aria-label={siteConfig.name}
-      class="flex items-center gap-2.5 text-gray-900 dark:text-zinc-100 hover:opacity-85 transition-opacity flex-shrink-0"
+      class="flex items-center gap-3 text-gray-900 dark:text-zinc-100 hover:opacity-85 transition-opacity flex-shrink-0"
     >
       <img
         src={avatarSrc}
         alt={siteConfig.name}
-        width="40"
-        height="40"
-        class="w-10 h-10 rounded-full object-cover object-top ring-2 ring-gray-200 dark:ring-white/15 flex-shrink-0"
+        width="44"
+        height="44"
+        class="w-11 h-11 rounded-full object-cover object-top ring-2 ring-gray-200 dark:ring-white/15 flex-shrink-0"
       />
       <span class="text-sm sm:text-base font-bold tracking-widest uppercase leading-none text-gray-900 dark:text-zinc-100">
         RYAN
       </span>
     </a>
 
-    <!-- Center: Desktop Single Glass Pill Bar (Compact so all 10 links fit comfortably inside viewport) -->
+    <!-- Center: Desktop Single Glass Pill Bar (9 links, slightly bigger while fitting comfortably) -->
     <nav
       aria-label="Primary navigation"
-      class="hidden lg:inline-flex items-center gap-0.5 min-w-0 max-w-full rounded-full p-1 bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_24px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.2)]"
+      class="hidden lg:inline-flex items-center gap-0.5 xl:gap-1 min-w-0 max-w-full rounded-full p-1.5 bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_24px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.2)]"
     >
       {navItems.map((item, idx) => {
         const isDefaultActive = idx === 0;
         return (
           <a
             href={item.href}
-            data-nav-id={item.external ? undefined : item.id}
-            target={item.external ? "_blank" : undefined}
-            rel={item.external ? "noopener noreferrer" : undefined}
+            data-nav-id={item.id}
             aria-current={isDefaultActive ? "page" : undefined}
             class:list={[
-              "desktop-nav-pill group relative inline-flex items-center justify-center gap-1 min-h-[40px] rounded-full px-2 xl:px-2.5 py-1.5 text-[11px] xl:text-xs font-medium transition-all duration-200 whitespace-nowrap",
+              "desktop-nav-pill group relative inline-flex items-center justify-center gap-1.5 min-h-[40px] rounded-full px-2.5 xl:px-3 py-1.5 text-xs xl:text-[13px] font-medium transition-all duration-200 whitespace-nowrap",
               isDefaultActive
                 ? "is-active bg-[#0F766E] dark:bg-teal-500 text-white shadow-[0_0_14px_rgba(15,118,110,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] dark:shadow-[0_0_16px_rgba(20,184,166,0.45),inset_0_1px_0_rgba(255,255,255,0.3)]"
                 : "text-gray-700 dark:text-zinc-100/85 hover:bg-neutral-900/5 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-zinc-100",
             ]}
           >
             {item.id === "about" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
               </svg>
             )}
             {item.id === "experience" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                 <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
@@ -85,7 +82,7 @@ const navItems = [
               </svg>
             )}
             {item.id === "projects" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                 <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
@@ -94,7 +91,7 @@ const navItems = [
               </svg>
             )}
             {item.id === "skills" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M7 8l-4 4l4 4" />
                 <path d="M17 8l4 4l-4 4" />
@@ -102,14 +99,14 @@ const navItems = [
               </svg>
             )}
             {item.id === "education" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
                 <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
               </svg>
             )}
             {item.id === "certifications" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                 <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" />
@@ -120,7 +117,7 @@ const navItems = [
               </svg>
             )}
             {item.id === "organizations" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
                 <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
@@ -131,7 +128,7 @@ const navItems = [
               </svg>
             )}
             {item.id === "awards" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M8 21l8 0" />
                 <path d="M12 17l0 4" />
@@ -142,20 +139,10 @@ const navItems = [
               </svg>
             )}
             {item.id === "contact" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
                 <path d="M3 7l9 6l9 -6" />
-              </svg>
-            )}
-            {item.id === "cv" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                <path d="M9 9l1 0" />
-                <path d="M9 13l6 0" />
-                <path d="M9 17l6 0" />
               </svg>
             )}
             <span>{item.label}</span>
@@ -164,13 +151,13 @@ const navItems = [
       })}
     </nav>
 
-    <!-- Right Controls: Theme Toggle + Mobile Hamburger (Always fully inside viewport) -->
+    <!-- Right Controls: 44px Theme Toggle + Mobile Hamburger -->
     <div class="flex items-center gap-2 flex-shrink-0">
       <button
         id="theme-toggle"
         type="button"
         aria-label="Toggle dark mode"
-        class="w-10 h-10 min-w-[40px] min-h-[40px] inline-flex items-center justify-center rounded-full bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/15 transition-colors cursor-pointer shadow-sm"
+        class="w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/15 transition-colors cursor-pointer shadow-sm"
       >
         <!-- Sun icon (shown in dark mode) -->
         <svg class="hidden dark:block w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -191,7 +178,7 @@ const navItems = [
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-menu-panel"
-        class="lg:hidden w-10 h-10 min-w-[40px] min-h-[40px] inline-flex items-center justify-center rounded-full bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/15 transition-colors cursor-pointer shadow-sm"
+        class="lg:hidden w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/15 transition-colors cursor-pointer shadow-sm"
       >
         <!-- Tabler menu-2 icon -->
         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -216,7 +203,7 @@ const navItems = [
           id="mobile-menu-close"
           type="button"
           aria-label="Close menu"
-          class="w-10 h-10 min-w-[40px] min-h-[40px] inline-flex items-center justify-center rounded-full text-gray-600 dark:text-zinc-300 hover:bg-neutral-900/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
+          class="w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full text-gray-600 dark:text-zinc-300 hover:bg-neutral-900/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
         >
           <!-- Tabler x icon -->
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -233,12 +220,10 @@ const navItems = [
             <li>
               <a
                 href={item.href}
-                data-mobile-nav-id={item.external ? undefined : item.id}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
+                data-mobile-nav-id={item.id}
                 aria-current={isDefaultActive ? "page" : undefined}
                 class:list={[
-                  "mobile-nav-link flex items-center gap-3 min-h-[42px] px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200",
+                  "mobile-nav-link flex items-center gap-3 min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200",
                   isDefaultActive
                     ? "is-active bg-[#0F766E] dark:bg-teal-500 text-white shadow-[0_0_12px_rgba(15,118,110,0.35)] dark:shadow-[0_0_14px_rgba(20,184,166,0.4)]"
                     : "text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/10",
@@ -322,16 +307,6 @@ const navItems = [
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
                     <path d="M3 7l9 6l9 -6" />
-                  </svg>
-                )}
-                {item.id === "cv" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                    <path d="M9 9l1 0" />
-                    <path d="M9 13l6 0" />
-                    <path d="M9 17l6 0" />
                   </svg>
                 )}
                 <span>{item.label}</span>

@@ -64,7 +64,7 @@ export const siteConfig = {
     {
       company: "PT Amerta Indah Otsuka",
       title: "Sales Digital Business Application Intern",
-      dateRange: "Aug 2026 to Present",
+      dateRange: "Aug 2026 - Present",
       bullets: [
         "Process 3,600+ visibility audit records per week for National General Trade Visibility Monitoring.",
         "Consolidated 62,000+ visibility records from multiple Excel and Google Sheets sources into a Looker Studio dashboard.",
@@ -75,7 +75,7 @@ export const siteConfig = {
     {
       company: "J&T Cargo Indonesia",
       title: "Network Quality Specialist",
-      dateRange: "Feb 2026 to Jun 2026",
+      dateRange: "Feb 2026 - Jun 2026",
       bullets: [
         "Monitored operational performance and SLA compliance across 77 outlets, sustaining a 98% SLA rate.",
         "Processed 200,000+ logistics records using Excel Power Query for exception handling and outlet performance analysis.",
@@ -84,7 +84,7 @@ export const siteConfig = {
     {
       company: "PT Nutrifood Indonesia",
       title: "Area Marketing Intern",
-      dateRange: "Aug 2025 to Dec 2025",
+      dateRange: "Aug 2025 - Dec 2025",
       bullets: [
         "Achieved 60% product trial conversion.",
         "Built 15+ partnerships from 50+ senior high schools evaluated.",
@@ -93,7 +93,7 @@ export const siteConfig = {
     {
       company: "DOT Indonesia",
       title: "Associate Project Manager Intern",
-      dateRange: "Nov 2024 to Feb 2025",
+      dateRange: "Nov 2024 - Feb 2025",
       bullets: [
         "Delivered 100% on-time milestones with a 7-person team across 8 sprints.",
       ],
@@ -167,11 +167,30 @@ export const siteConfig = {
     {
       school: "Universitas Islam Negeri Sultan Syarif Kasim Riau",
       degree: "Bachelor of Computer Science in Information Systems",
-      dateRange: "2021 to January 2026",
+      badge: "Cumlaude",
+      location: "",
+      dateRange: "2021 - January 2026",
       achievements: [
         "GPA: 3.89 / 4.00",
-        // TODO: add thesis title if Novrian wants to display it
       ],
+      thesis: {
+        label: "Thesis (Skripsi)",
+        title:
+          "Penerapan Deep Learning untuk Klasifikasi Tumor Otak dengan Pendekatan Explainable Artificial Intelligence (XAI)",
+        url: "http://repository.uin-suska.ac.id/92583/",
+      },
+    },
+    {
+      school: "Machine Learning Engineer Learning Path | GPA: 3.89/4.00",
+      degree: "Coding Camp powered by DBS Foundation",
+      badge: "",
+      location: "Pekanbaru, Riau",
+      dateRange: "Feb 2025 - Aug 2025",
+      achievements: [
+        'Completed a 7-month industry-focused Machine Learning program covering EDA, feature engineering, and model deployment, earning "High Performing" and "Most Active Student" awards.',
+        'Developed "Foodinary", an end-to-end Deep Learning capstone project achieving a 94% classification accuracy.',
+      ],
+      thesis: null,
     },
   ],
 
@@ -263,7 +282,7 @@ export const siteConfig = {
       name: "Puzzle Research Data Technology (PREDATECH)",
       location: "Pekanbaru, Riau",
       role: "Chief Student Coordinator",
-      period: "Mar 2025 to Dec 2025",
+      period: "Mar 2025 - Dec 2025",
       photos: [] as string[], // TODO: add activity photos
       bullets: [
         "Led a 100+ member technology community, managing 6 division heads to drive talent and organizational growth.",
@@ -276,7 +295,7 @@ export const siteConfig = {
       name: "Generasi Baru Indonesia (GenBI) Riau",
       location: "Pekanbaru, Riau",
       role: "Member of Education & Culture Division",
-      period: "Apr 2024 to Dec 2024",
+      period: "Apr 2024 - Dec 2024",
       photos: [] as string[], // TODO: add activity photos
       bullets: [
         "Led the GeMAI AI seminar, coordinating 2 speakers and delivering technology education to 80+ participants.",
@@ -289,7 +308,7 @@ export const siteConfig = {
       name: "Google Developer Student Clubs (GDSC)",
       location: "Pekanbaru, Riau",
       role: "Core Team Program & Partnerships Division",
-      period: "Oct 2023 to May 2024",
+      period: "Oct 2023 - May 2024",
       photos: [] as string[], // TODO: add activity photos
       bullets: [
         "Led the onboarding of 50+ new members, achieving 100% successful integration into the developer community.",
