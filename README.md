@@ -2,7 +2,7 @@
 
 Personal portfolio website for Novrian Pratama, Data Analyst with a focus on FMCG.
 
-**Live site:** https://novrianpratama.github.io/NovrianPratama_Portofolio/
+**Live site:** https://novrianpratama.github.io/
 
 ## About
 
@@ -33,7 +33,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:4321/NovrianPratama_Portofolio/
+Open http://localhost:4321/
 
 Build for production:
 
@@ -57,7 +57,7 @@ public/
 
 ## Deployment
 
-Deployed to GitHub Pages with GitHub Actions. Every push to `main` builds the site and publishes it to https://novrianpratama.github.io/NovrianPratama_Portofolio/
+Deployed to GitHub Pages with GitHub Actions. Every push to `main` builds the site and publishes it to https://novrianpratama.github.io/
 
 ## Contact
 
