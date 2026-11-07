@@ -167,11 +167,10 @@ export const siteConfig = {
     {
       school: "Universitas Islam Negeri Sultan Syarif Kasim Riau",
       degree: "Bachelor of Computer Science in Information Systems",
-      badge: "Cumlaude",
       location: "",
       dateRange: "2021 - January 2026",
       achievements: [
-        "GPA: 3.89 / 4.00",
+        "GPA: 3.89 / 4.00 • Cumlaude (7-Semester Program Completed)",
       ],
       thesis: {
         label: "Thesis (Skripsi)",
@@ -183,7 +182,6 @@ export const siteConfig = {
     {
       school: "Machine Learning Engineer Learning Path | GPA: 3.89/4.00",
       degree: "Coding Camp powered by DBS Foundation",
-      badge: "",
       location: "Pekanbaru, Riau",
       dateRange: "Feb 2025 - Aug 2025",
       achievements: [
