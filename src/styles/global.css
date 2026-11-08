@@ -9,13 +9,16 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  overflow-x: clip;
 }
 
 /* PRD §8.2: single teal accent, no second accent */
@@ -38,24 +41,204 @@ ul {
   outline-offset: 3px;
 }
 
-/* Animations */
+/* Hero entrance animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translate3d(0, 18px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-fade-in {
-  animation: fadeInUp 0.7s ease-out forwards;
+  animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   opacity: 0;
 }
 
-.animation-delay-200 { animation-delay: 0.2s; }
-.animation-delay-400 { animation-delay: 0.4s; }
-.animation-delay-600 { animation-delay: 0.6s; }
-.animation-delay-800 { animation-delay: 0.8s; }
+.animation-delay-200 { animation-delay: 0.1s; }
+.animation-delay-400 { animation-delay: 0.2s; }
+.animation-delay-600 { animation-delay: 0.3s; }
+.animation-delay-800 { animation-delay: 0.4s; }
+
+/* Navbar smooth load entrance & GPU-only glider transitions */
+@keyframes navbarEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+#navbar-pill {
+  animation: navbarEnter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#nav-active-glider {
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+#nav-glider-left,
+#nav-glider-mid,
+#nav-glider-right {
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.lang-glider {
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.dark .theme-icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+html.dark .theme-icon-moon {
+  opacity: 0;
+  transform: rotate(75deg) scale(0.65);
+}
+html:not(.dark) .theme-icon-sun {
+  opacity: 0;
+  transform: rotate(-75deg) scale(0.65);
+}
+html:not(.dark) .theme-icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Frosted-glass mobile menu overlay & panel (with Safari -webkit- prefix) */
+#mobile-menu-backdrop {
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  transition: opacity 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#mobile-menu-panel {
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  transition:
+    opacity 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Skeleton loading screen & subtle neutral shimmer */
+#page-skeleton {
+  transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#page-skeleton.is-hiding {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.skeleton-block {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: skeletonShimmer 1.35s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+html.dark .skeleton-block::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.09) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Scroll-triggered reveal animations (transform & opacity only) */
+html.js-ready .reveal-item {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js-ready .reveal-item.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hide horizontal scrollbar on mobile snap carousels */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  #page-skeleton {
+    display: none !important;
+  }
+  .skeleton-block::after {
+    animation: none !important;
+    display: none !important;
+  }
+  .animate-fade-in,
+  #navbar-pill {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  html.js-ready .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  #nav-active-glider,
+  #nav-glider-left,
+  #nav-glider-mid,
+  #nav-glider-right,
+  .lang-glider,
+  .theme-icon-sun,
+  .theme-icon-moon,
+  #mobile-menu-backdrop,
+  #mobile-menu-panel {
+    transition: none !important;
+  }
+}

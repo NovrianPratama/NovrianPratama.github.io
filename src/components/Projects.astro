@@ -2,144 +2,391 @@
 import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+// Card palettes: 3 saturated cards with white text + 3 muted neutral Coming Soon cards with dark text
+const cardPalettes = [
+  {
+    // Card 1: Coral red #D15454
+    bg: "bg-[#D15454]",
+    border: "border-[#B84343]",
+    isDarkBg: true,
+  },
+  {
+    // Card 2: Dark navy #172554
+    bg: "bg-[#172554]",
+    border: "border-[#1E3A8A]",
+    isDarkBg: true,
+  },
+  {
+    // Card 3: Bright blue #3B82F6
+    bg: "bg-[#3B82F6]",
+    border: "border-[#2563EB]",
+    isDarkBg: true,
+  },
+  {
+    // Card 4 (Coming soon): Muted neutral zinc-100 #F4F4F5
+    bg: "bg-[#F4F4F5]",
+    border: "border-[#D4D4D8]",
+    isDarkBg: false,
+  },
+  {
+    // Card 5 (Coming soon): Muted neutral zinc-200 #E4E4E7
+    bg: "bg-[#E4E4E7]",
+    border: "border-[#D4D4D8]",
+    isDarkBg: false,
+  },
+  {
+    // Card 6 (Coming soon): Muted neutral slate-100 #F1F5F9
+    bg: "bg-[#F1F5F9]",
+    border: "border-[#CBD5E1]",
+    isDarkBg: false,
+  },
+];
 ---
 
 {hasProjects && (
-  <section id="projects" class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 bg-white dark:bg-zinc-900 transition-colors duration-200">
+  <section
+    id="projects"
+    class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-24 bg-white dark:bg-zinc-900 transition-colors duration-200"
+  >
     <div class="max-w-6xl mx-auto">
-      <!-- Top Header Row -->
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-        <div>
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+        <!-- Left Column: Sticky Heading, Subheading & Numbered Project Index -->
+        <div class="lg:col-span-4 lg:sticky lg:top-24 self-start reveal-item">
+          <h2
+            data-i18n="projects.heading"
+            class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100"
+          >
             Projects
           </h2>
           <div class="w-14 h-1.5 mt-2.5 rounded-full bg-[#0F766E] dark:bg-teal-400"></div>
+          <p
+            data-i18n="projects.subheading"
+            class="mt-3 text-sm text-gray-500 dark:text-zinc-400 leading-relaxed"
+          >
+            Selected data analytics and business intelligence case studies.
+          </p>
+
+          <!-- Numbered Project List (tracks top stacked card) -->
+          <ol id="project-index-list" class="mt-5 lg:mt-7 space-y-2 sm:space-y-2.5">
+            {siteConfig.projects.map((project, idx) => {
+              const isFirst = idx === 0;
+              const numLabel = String(idx + 1).padStart(2, "0");
+              return (
+                <li>
+                  <button
+                    type="button"
+                    data-project-index-btn={idx}
+                    aria-current={isFirst ? "true" : undefined}
+                    class:list={[
+                      "project-index-btn group w-full text-left flex items-baseline gap-3 py-1 text-sm leading-snug transition-colors duration-200 cursor-pointer",
+                      isFirst
+                        ? "font-bold text-gray-900 dark:text-zinc-100"
+                        : "font-normal text-gray-400 dark:text-zinc-500 hover:text-gray-700 dark:hover:text-zinc-300",
+                    ]}
+                  >
+                    <span
+                      data-project-index-num
+                      class:list={[
+                        "font-mono text-xs tabular-nums flex-shrink-0 transition-colors duration-200",
+                        isFirst
+                          ? "font-bold text-[#0F766E] dark:text-teal-400"
+                          : "font-normal text-gray-400 dark:text-zinc-500",
+                      ]}
+                    >
+                      {numLabel}
+                    </span>
+                    <span
+                      data-i18n={`projects.${idx}.name`}
+                      class="line-clamp-1"
+                    >
+                      {project.name}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
         </div>
 
-        <a
-          href={siteConfig.social.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-zinc-800 text-sm font-semibold text-gray-800 dark:text-zinc-100 hover:bg-gray-50 dark:hover:bg-white/10 transition-colors self-start sm:self-auto"
-        >
-          <!-- GitHub icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
-          </svg>
-          <span>Explore All Repos</span>
-          <!-- External link icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 dark:text-zinc-400">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-            <path d="M11 13l9 -9" />
-            <path d="M15 4h5v5" />
-          </svg>
-        </a>
-      </div>
+        <!-- Right Column: Sticky Stacked Cards (54px strip visible per card) -->
+        <div id="projects-stack" class="lg:col-span-8 relative">
+          {siteConfig.projects.map((project, index) => {
+            const isComingSoon = project.status === "coming-soon" || !project.slug;
+            const isInProgress = project.status === "in-progress";
+            const caseStudyHref = !isComingSoon ? `${baseUrl}/projects/${project.slug}` : null;
+            const repoHref = (project as any).repoLink || null;
+            const imgSrc = `${baseUrl}/${(project.image || "/project-placeholder.svg").replace(/^\//, "")}`;
+            const palette = cardPalettes[index % cardPalettes.length];
+            const stickyTopPx = 84 + index * 54;
+            const numLabel = String(index + 1).padStart(2, "0");
 
-      <!-- 6-Card Compact 3-Column Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {siteConfig.projects.map((project, index) => {
-          const isComingSoon = project.status === "coming-soon" || !project.slug;
-          const isInProgress = project.status === "in-progress";
-          const caseStudyHref = !isComingSoon ? `${baseUrl}/projects/${project.slug}` : null;
-          const repoHref = (project as any).repoLink || null;
-          const imgSrc = `${baseUrl}/${(project.image || "/project-placeholder.svg").replace(/^\//, "")}`;
-
-          return (
-            <article class="flex flex-col bg-gray-50 dark:bg-zinc-800 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
-              <!-- Compact Top Image Area -->
-              <div class="relative h-36 w-full bg-gray-100 dark:bg-zinc-900/60 border-b border-gray-200 dark:border-white/10 overflow-hidden">
-                <img
-                  src={imgSrc}
-                  alt={`${project.name} preview`}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                {isInProgress && (
-                  <span class="absolute top-2.5 left-2.5 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300 border border-amber-200 dark:border-amber-400/30">
-                    In progress
-                  </span>
-                )}
-                {isComingSoon && (
-                  <span class="absolute top-2.5 left-2.5 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-200 text-gray-700 dark:bg-zinc-800 dark:text-zinc-400 border border-gray-300 dark:border-white/10">
-                    Coming soon
-                  </span>
-                )}
-              </div>
-
-              <!-- Compact Card Body -->
-              <div class="p-4 flex-1 flex flex-col justify-between space-y-3.5">
-                <div class="space-y-2">
-                  <!-- Title + Number row -->
-                  <div class="flex items-start justify-between gap-3">
-                    <h3 class="text-base font-bold text-gray-900 dark:text-zinc-100 leading-snug line-clamp-2">
-                      {project.name}
-                    </h3>
-                    <span class="text-xs font-mono font-semibold text-teal-700 dark:text-teal-400 flex-shrink-0 mt-0.5">
-                      0{index + 1}
+            return (
+              <>
+                <span
+                  data-project-anchor={index}
+                  aria-hidden="true"
+                  class="block h-0 m-0 p-0"
+                ></span>
+                <article
+                  data-project-card={index}
+                  data-sticky-top={stickyTopPx}
+                  style={`top: ${stickyTopPx}px; z-index: ${10 + index};`}
+                  class:list={[
+                    "project-stack-card sticky mb-8 sm:mb-10 rounded-3xl border p-4 sm:p-6 shadow-[0_-8px_28px_rgba(15,23,42,0.12),0_12px_30px_rgba(15,23,42,0.1)] flex flex-col justify-between min-h-[365px] sm:min-h-[405px]",
+                    palette.bg,
+                    palette.border,
+                    palette.isDarkBg ? "text-white" : "text-[#18181B]",
+                  ]}
+                >
+                  <!-- Top Mockup / Screenshot Area -->
+                  <div class="relative h-40 sm:h-48 w-full rounded-2xl overflow-hidden border border-black/10 bg-white/95">
+                    <img
+                      src={imgSrc}
+                      alt={`${project.name} preview`}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <span
+                      class:list={[
+                        "absolute top-2.5 right-2.5 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-bold",
+                        palette.isDarkBg
+                          ? "bg-black/65 text-white"
+                          : "bg-zinc-900/80 text-white",
+                      ]}
+                    >
+                      {numLabel}
                     </span>
+
+                    {isInProgress && (
+                      <span
+                        data-i18n="projects.statusInProgress"
+                        class="absolute top-2.5 left-2.5 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-300 text-zinc-950 border border-amber-400"
+                      >
+                        In progress
+                      </span>
+                    )}
+                    {isComingSoon && (
+                      <span
+                        data-i18n="projects.statusComingSoon"
+                        class="absolute top-2.5 left-2.5 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-zinc-800 text-white border border-zinc-700"
+                      >
+                        Coming soon
+                      </span>
+                    )}
                   </div>
 
-                  <!-- Short Description (clamped to 2 lines) -->
-                  <p class="text-xs sm:text-sm text-gray-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div class="space-y-3 pt-1">
-                  <!-- Tech Stack Chips -->
-                  {project.tools && project.tools.length > 0 && (
-                    <div class="flex flex-wrap gap-1.5">
-                      {project.tools.map((tool) => (
-                        <span class="px-2 py-0.5 bg-white dark:bg-zinc-900/70 text-gray-700 dark:text-zinc-100 border border-gray-200 dark:border-white/10 rounded-md text-xs font-medium">
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  <!-- Footer Links (only for live / in-progress projects) -->
-                  {(caseStudyHref || repoHref) && (
-                    <div class="pt-2.5 border-t border-gray-200/80 dark:border-white/10 flex items-center justify-between gap-3">
-                      {caseStudyHref ? (
-                        <a
-                          href={caseStudyHref}
-                          class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm font-semibold text-teal-700 dark:text-teal-400 hover:underline"
+                  <!-- Card Details: Title, Links, One-Line/Compact Description, Tech Pills -->
+                  <div class="pt-4 sm:pt-5 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-2">
+                      <div class="flex flex-wrap items-start justify-between gap-2">
+                        <h3
+                          data-i18n={`projects.${index}.name`}
+                          class:list={[
+                            "text-lg sm:text-xl font-bold leading-snug",
+                            palette.isDarkBg ? "text-white" : "text-[#18181B]",
+                          ]}
                         >
-                          <span>View Details</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                          </svg>
-                        </a>
-                      ) : <span />}
+                          {project.name}
+                        </h3>
 
-                      {repoHref && (
-                        <a
-                          href={repoHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="inline-flex items-center gap-1 min-h-[44px] text-xs font-medium text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100 transition-colors"
-                        >
-                          <span>Repository</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-                            <path d="M11 13l9 -9" />
-                            <path d="M15 4h5v5" />
-                          </svg>
-                        </a>
-                      )}
+                        <!-- Links (only when real URL / slug exists; none on Coming Soon) -->
+                        {(caseStudyHref || repoHref) && (
+                          <div class="flex items-center gap-3 flex-shrink-0">
+                            {caseStudyHref && (
+                              <a
+                                href={caseStudyHref}
+                                class:list={[
+                                  "inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold transition-opacity hover:opacity-90",
+                                  palette.isDarkBg
+                                    ? "bg-white text-zinc-900"
+                                    : "bg-zinc-900 text-white",
+                                ]}
+                              >
+                                <span data-i18n="projects.viewDetails">View Details</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                  <path d="M5 12h14"></path>
+                                  <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                              </a>
+                            )}
+
+                            {repoHref && (
+                              <a
+                                href={repoHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class:list={[
+                                  "inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold border transition-opacity hover:opacity-90",
+                                  palette.isDarkBg
+                                    ? "bg-white/20 text-white border-white/35"
+                                    : "bg-white text-zinc-900 border-zinc-300",
+                                ]}
+                              >
+                                <span data-i18n="projects.repository">Repository</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                  <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                                  <path d="M11 13l9 -9" />
+                                  <path d="M15 4h5v5" />
+                                </svg>
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      <!-- Description -->
+                      <p
+                        data-i18n={`projects.${index}.description`}
+                        class:list={[
+                          "text-xs sm:text-sm leading-relaxed line-clamp-2 font-medium",
+                          palette.isDarkBg ? "text-white" : "text-zinc-700",
+                        ]}
+                      >
+                        {project.description}
+                      </p>
                     </div>
-                  )}
-                </div>
-              </div>
-            </article>
-          );
-        })}
+
+                    <!-- Small Technology Pills -->
+                    {project.tools && project.tools.length > 0 && (
+                      <div class="flex flex-wrap gap-1.5 pt-1">
+                        {project.tools.map((tool) => (
+                          <span
+                            class:list={[
+                              "px-2.5 py-1 rounded-full text-xs font-medium border",
+                              palette.isDarkBg
+                                ? "bg-white/20 text-white border-white/35"
+                                : "bg-white text-zinc-800 border-zinc-300",
+                            ]}
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              </>
+            );
+          })}
+
+          <!-- Final Stacked Card: White/Off-White with Centred Black Text & GitHub Icon -->
+          <a
+            href={siteConfig.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={`top: ${84 + siteConfig.projects.length * 54}px; z-index: ${10 + siteConfig.projects.length};`}
+            class="sticky rounded-3xl border border-zinc-300 bg-[#FAFAFA] text-[#18181B] p-8 sm:p-12 min-h-[355px] sm:min-h-[385px] shadow-[0_-8px_28px_rgba(15,23,42,0.12),0_12px_30px_rgba(15,23,42,0.1)] flex flex-col items-center justify-center gap-4 text-center group hover:bg-white transition-colors duration-200"
+          >
+            <span class="w-14 h-14 rounded-full bg-zinc-900 text-white inline-flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+              <!-- Tabler brand-github icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+              </svg>
+            </span>
+            <span
+              data-i18n="projects.moreOnGithub"
+              class="text-lg sm:text-2xl font-bold text-[#18181B] group-hover:underline"
+            >
+              View More Projects on GitHub
+            </span>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
 )}
+
+<script>
+  const indexBtns = document.querySelectorAll<HTMLButtonElement>(".project-index-btn[data-project-index-btn]");
+  const anchors = document.querySelectorAll<HTMLElement>("[data-project-anchor]");
+  const cards = document.querySelectorAll<HTMLElement>(".project-stack-card[data-project-card]");
+
+  const ACTIVE_ITEM = ["font-bold", "text-gray-900", "dark:text-zinc-100"];
+  const INACTIVE_ITEM = [
+    "font-normal",
+    "text-gray-400",
+    "dark:text-zinc-500",
+    "hover:text-gray-700",
+    "dark:hover:text-zinc-300",
+  ];
+
+  const ACTIVE_NUM = ["font-bold", "text-[#0F766E]", "dark:text-teal-400"];
+  const INACTIVE_NUM = ["font-normal", "text-gray-400", "dark:text-zinc-500"];
+
+  let currentActiveIdx = -1;
+  let ticking = false;
+
+  function setActiveProject(activeIdx: number) {
+    if (activeIdx === currentActiveIdx) return;
+    currentActiveIdx = activeIdx;
+
+    indexBtns.forEach((btn, idx) => {
+      const numSpan = btn.querySelector<HTMLElement>("[data-project-index-num]");
+      if (idx === activeIdx) {
+        btn.classList.remove(...INACTIVE_ITEM);
+        btn.classList.add(...ACTIVE_ITEM);
+        btn.setAttribute("aria-current", "true");
+        numSpan?.classList.remove(...INACTIVE_NUM);
+        numSpan?.classList.add(...ACTIVE_NUM);
+      } else {
+        btn.classList.remove(...ACTIVE_ITEM);
+        btn.classList.add(...INACTIVE_ITEM);
+        btn.removeAttribute("aria-current");
+        numSpan?.classList.remove(...ACTIVE_NUM);
+        numSpan?.classList.add(...INACTIVE_NUM);
+      }
+    });
+  }
+
+  function updateActiveCardOnScroll() {
+    ticking = false;
+    if (anchors.length === 0 || cards.length === 0) return;
+
+    let topCardIdx = 0;
+    for (let i = 0; i < anchors.length; i++) {
+      const anchorRect = anchors[i].getBoundingClientRect();
+      const stickyTop = Number(cards[i]?.dataset.stickyTop || 84 + i * 54);
+      if (anchorRect.top <= stickyTop + 48) {
+        topCardIdx = i;
+      }
+    }
+    setActiveProject(topCardIdx);
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActiveCardOnScroll);
+      }
+    },
+    { passive: true }
+  );
+
+  updateActiveCardOnScroll();
+
+  indexBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = Number(btn.dataset.projectIndexBtn);
+      const anchor = anchors[idx];
+      const card = cards[idx];
+      if (!anchor || !card) return;
+
+      const stickyTop = Number(card.dataset.stickyTop || 84 + idx * 54);
+      const naturalTop = anchor.getBoundingClientRect().top + window.scrollY;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      window.scrollTo({
+        top: Math.max(0, naturalTop - stickyTop + 4),
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+      setActiveProject(idx);
+    });
+  });
+</script>

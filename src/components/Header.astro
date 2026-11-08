@@ -10,48 +10,72 @@ const hasOrganizations = siteConfig.organizations && siteConfig.organizations.le
 const hasAwards = siteConfig.awards && siteConfig.awards.length > 0;
 const avatarSrc = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${siteConfig.photo.replace(/^\//, "")}`;
 
-const navItems = [
-  { id: "about", label: "About", href: "#about", show: true },
-  { id: "experience", label: "Experience", href: "#experience", show: hasExperience },
-  { id: "projects", label: "Projects", href: "#projects", show: hasProjects },
-  { id: "skills", label: "Skills", href: "#skills", show: hasSkills },
-  { id: "education", label: "Education", href: "#education", show: hasEducation },
-  { id: "certifications", label: "Certifications", href: "#certifications", show: hasCertifications },
-  { id: "organizations", label: "Organizations", href: "#organizations", show: hasOrganizations },
-  { id: "awards", label: "Awards", href: "#awards", show: hasAwards },
-  { id: "contact", label: "Contact", href: "#contact", show: true },
+const centerNavItems = [
+  { id: "about", i18nKey: "nav.about", label: "About", href: "#about", show: true },
+  { id: "experience", i18nKey: "nav.experience", label: "Experience", href: "#experience", show: hasExperience },
+  { id: "projects", i18nKey: "nav.projects", label: "Projects", href: "#projects", show: hasProjects },
+  { id: "skills", i18nKey: "nav.skills", label: "Skills", href: "#skills", show: hasSkills },
+  { id: "education", i18nKey: "nav.education", label: "Education", href: "#education", show: hasEducation },
+  { id: "certifications", i18nKey: "nav.certifications", label: "Certifications", href: "#certifications", show: hasCertifications },
+  { id: "organizations", i18nKey: "nav.organizations", label: "Organizations", href: "#organizations", show: hasOrganizations },
+  { id: "awards", i18nKey: "nav.awards", label: "Awards", href: "#awards", show: hasAwards },
 ].filter((item) => item.show);
 ---
 
+<!-- Short Centred Floating Pill Navbar -->
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 w-full z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-gray-200/80 dark:border-white/10 transition-colors duration-200"
+  class="fixed top-4 inset-x-0 z-50 flex justify-center px-2 sm:px-4 pointer-events-none"
 >
-  <div class="max-w-6xl mx-auto w-full px-5 sm:px-8 lg:px-6 xl:px-8 py-3 flex items-center justify-between gap-2 xl:gap-3">
-    <!-- Far Left: Circular Photo Avatar + "RYAN" Only -->
+  <div
+    id="navbar-pill"
+    class="pointer-events-auto w-full max-w-xl xl:w-fit xl:max-w-[1240px] min-h-[48px] rounded-full pl-1.5 pr-1.5 py-0.5 flex items-center justify-between gap-2 xl:gap-2.5 bg-zinc-100/85 dark:bg-zinc-800/85 border border-gray-200/90 dark:border-white/12 backdrop-blur-md [-webkit-backdrop-filter:blur(12px)] shadow-[0_8px_24px_rgba(15,23,42,0.08)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.42)] transition-colors duration-200"
+  >
+    <!-- Left End: Circular Photo Avatar + "RYAN" -->
     <a
       href="#hero"
       aria-label={siteConfig.name}
-      class="flex items-center gap-3 text-gray-900 dark:text-zinc-100 hover:opacity-85 transition-opacity flex-shrink-0"
+      class="flex items-center gap-2.5 pr-1 text-gray-900 dark:text-zinc-100 hover:opacity-85 transition-opacity flex-shrink-0 rounded-full"
     >
       <img
         src={avatarSrc}
         alt={siteConfig.name}
         width="44"
         height="44"
-        class="w-11 h-11 rounded-full object-cover object-top ring-2 ring-gray-200 dark:ring-white/15 flex-shrink-0"
+        class="w-11 h-11 rounded-full object-cover object-top ring-2 ring-white dark:ring-white/15 shadow-xs flex-shrink-0"
       />
       <span class="text-sm sm:text-base font-bold tracking-widest uppercase leading-none text-gray-900 dark:text-zinc-100">
         RYAN
       </span>
     </a>
 
-    <!-- Center: Desktop Single Glass Pill Bar (all 9 links fit fully inside the pill) -->
+    <!-- Centre: Desktop Navigation Links with Smooth Gliding Active Pill -->
     <nav
+      id="desktop-nav"
       aria-label="Primary navigation"
-      class="hidden lg:inline-flex items-center gap-0.5 flex-shrink-0 rounded-full p-1.5 bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_24px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.2)]"
+      class="hidden xl:inline-flex relative items-center gap-0.5 flex-shrink-0 py-0.5"
     >
-      {navItems.map((item, idx) => {
+      <!-- Pure-GPU 3-part gliding pill (transform & opacity only, zero corner distortion) -->
+      <span
+        id="nav-active-glider"
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-y-0.5 left-0 z-0 opacity-100"
+      >
+        <span
+          id="nav-glider-left"
+          class="absolute top-0 bottom-0 left-0 w-[18px] rounded-l-full bg-[#0F766E] dark:bg-teal-500"
+        ></span>
+        <span
+          id="nav-glider-mid"
+          class="absolute top-0 bottom-0 left-0 w-[1px] origin-left bg-[#0F766E] dark:bg-teal-500"
+        ></span>
+        <span
+          id="nav-glider-right"
+          class="absolute top-0 bottom-0 left-0 w-[18px] rounded-r-full bg-[#0F766E] dark:bg-teal-500"
+        ></span>
+      </span>
+
+      {centerNavItems.map((item, idx) => {
         const isDefaultActive = idx === 0;
         return (
           <a
@@ -59,129 +83,98 @@ const navItems = [
             data-nav-id={item.id}
             aria-current={isDefaultActive ? "page" : undefined}
             class:list={[
-              "desktop-nav-pill group relative inline-flex items-center justify-center gap-1 min-h-[40px] rounded-full px-2.5 py-1.5 text-xs font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0",
+              "desktop-nav-pill relative z-10 inline-flex items-center justify-center min-h-[38px] rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors duration-200 whitespace-nowrap flex-shrink-0",
               isDefaultActive
-                ? "is-active bg-[#0F766E] dark:bg-teal-500 text-white shadow-[0_0_14px_rgba(15,118,110,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] dark:shadow-[0_0_16px_rgba(20,184,166,0.45),inset_0_1px_0_rgba(255,255,255,0.3)]"
-                : "text-gray-700 dark:text-zinc-100/85 hover:bg-neutral-900/5 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-zinc-100",
+                ? "is-active text-white"
+                : "text-gray-700 dark:text-zinc-200 hover:text-gray-950 dark:hover:text-white",
             ]}
           >
-            {item.id === "about" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-              </svg>
-            )}
-            {item.id === "experience" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-                <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
-                <path d="M12 12l0 .01" />
-                <path d="M3 13a20 20 0 0 0 18 0" />
-              </svg>
-            )}
-            {item.id === "projects" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                <path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-              </svg>
-            )}
-            {item.id === "skills" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 8l-4 4l4 4" />
-                <path d="M17 8l4 4l-4 4" />
-                <path d="M14 4l-4 16" />
-              </svg>
-            )}
-            {item.id === "education" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
-                <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
-              </svg>
-            )}
-            {item.id === "certifications" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" />
-                <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73" />
-                <path d="M6 9l12 0" />
-                <path d="M6 12l3 0" />
-                <path d="M6 15l2 0" />
-              </svg>
-            )}
-            {item.id === "organizations" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
-              </svg>
-            )}
-            {item.id === "awards" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M8 21l8 0" />
-                <path d="M12 17l0 4" />
-                <path d="M7 4l10 0" />
-                <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
-                <path d="M5 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M19 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              </svg>
-            )}
-            {item.id === "contact" && (
-              <svg class="w-3.5 h-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-                <path d="M3 7l9 6l9 -6" />
-              </svg>
-            )}
-            <span>{item.label}</span>
+            <span data-i18n={item.i18nKey}>{item.label}</span>
           </a>
         );
       })}
     </nav>
 
-    <!-- Right Controls: 44px Theme Toggle + Mobile Hamburger -->
-    <div class="flex items-center gap-2 flex-shrink-0">
+    <!-- Right End: Faint Divider + Language Switcher + Theme Toggle + Contact Button / Mobile Hamburger -->
+    <div class="flex items-center gap-1.5 flex-shrink-0">
+      <!-- Faint vertical divider before language switcher -->
+      <span
+        aria-hidden="true"
+        class="hidden xl:block h-5 w-px bg-gray-300/90 dark:bg-white/15 mr-0.5 flex-shrink-0"
+      ></span>
+
+      <!-- EN / ID Language Switcher (Navbar) -->
+      <div
+        role="group"
+        aria-label="Language switcher"
+        class="relative inline-flex items-center p-0.5 rounded-full bg-white/85 dark:bg-zinc-900/75 border border-gray-200/90 dark:border-white/10 flex-shrink-0"
+      >
+        <span
+          aria-hidden="true"
+          data-lang-glider
+          class="lang-glider pointer-events-none absolute top-0.5 bottom-0.5 left-0.5 w-7 rounded-full bg-[#0F766E] dark:bg-teal-500"
+        ></span>
+        <button
+          type="button"
+          data-lang-btn="en"
+          aria-pressed="true"
+          class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-white"
+        >
+          EN
+        </button>
+        <button
+          type="button"
+          data-lang-btn="id"
+          aria-pressed="false"
+          class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100"
+        >
+          ID
+        </button>
+      </div>
+
+      <!-- 44px Theme Toggle (Never shrunk) -->
       <button
         id="theme-toggle"
         type="button"
         aria-label="Toggle dark mode"
-        class="w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/15 transition-colors cursor-pointer shadow-sm"
+        data-i18n-aria="nav.toggleTheme"
+        class="relative w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full bg-white/85 dark:bg-zinc-900/75 border border-gray-200/90 dark:border-white/12 text-gray-700 dark:text-zinc-100 hover:bg-white dark:hover:bg-zinc-900 transition-colors cursor-pointer flex-shrink-0"
       >
-        <!-- Sun icon (shown in dark mode) -->
-        <svg class="hidden dark:block w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Sun icon (visible in dark mode via opacity/transform) -->
+        <svg class="theme-icon-sun absolute w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
           <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
         </svg>
-        <!-- Moon icon (shown in light mode) -->
-        <svg class="block dark:hidden w-5 h-5 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Moon icon (visible in light mode via opacity/transform) -->
+        <svg class="theme-icon-moon absolute w-5 h-5 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
         </svg>
       </button>
 
+      <!-- Desktop Opposite-Contrast Contact Pill Button -->
+      <a
+        href="#contact"
+        id="desktop-contact-btn"
+        data-nav-contact="contact"
+        class="hidden xl:inline-flex items-center justify-center min-h-[40px] px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap flex-shrink-0 bg-[#18181B] text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200 transition-transform duration-200 active:scale-[0.98] shadow-xs"
+      >
+        <span data-i18n="nav.contact">Contact</span>
+      </a>
+
+      <!-- Mobile/Tablet Hamburger Button -->
       <button
         id="mobile-menu-open"
         type="button"
         aria-label="Open menu"
+        data-i18n-aria="nav.openMenu"
         aria-expanded="false"
-        aria-controls="mobile-menu-panel"
-        class="lg:hidden w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full bg-white/70 dark:bg-white/10 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/15 transition-colors cursor-pointer shadow-sm"
+        aria-controls="mobile-menu-overlay"
+        class="xl:hidden w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full bg-white/85 dark:bg-zinc-900/75 border border-gray-200/90 dark:border-white/12 text-gray-700 dark:text-zinc-100 hover:bg-white dark:hover:bg-zinc-900 transition-colors cursor-pointer flex-shrink-0"
       >
         <!-- Tabler menu-2 icon -->
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M4 6l16 0" />
           <path d="M4 12l16 0" />
@@ -190,189 +183,291 @@ const navItems = [
       </button>
     </div>
   </div>
+</header>
 
-  <!-- Mobile Glass Menu Panel -->
+<!-- Mobile Frosted-Glass Menu Overlay (Sibling outside <header> so backdrop-filter blurs the live page behind it) -->
+<div
+  id="mobile-menu-overlay"
+  aria-hidden="true"
+  class="fixed inset-0 z-40 xl:hidden invisible pointer-events-none"
+>
+  <!-- Blurred Semi-Transparent Backdrop -->
+  <div
+    id="mobile-menu-backdrop"
+    class="absolute inset-0 bg-zinc-900/25 dark:bg-black/45 opacity-0"
+  ></div>
+
+  <!-- Frosted Glass Menu Panel -->
   <div
     id="mobile-menu-panel"
-    class="hidden lg:hidden px-5 sm:px-8 pb-4 pt-1 max-w-6xl mx-auto"
+    class="relative z-10 mt-[74px] mx-3 sm:mx-auto sm:max-w-xl rounded-2xl p-3.5 bg-white/78 dark:bg-zinc-900/80 border border-gray-200/85 dark:border-white/15 shadow-[0_18px_42px_rgba(15,23,42,0.18)] dark:shadow-[0_18px_42px_rgba(0,0,0,0.55)] max-h-[calc(100svh-90px)] overflow-y-auto opacity-0 -translate-y-2 scale-[0.98]"
   >
-    <div class="rounded-2xl p-3 bg-white/85 dark:bg-zinc-800/90 border border-neutral-200/80 dark:border-white/15 backdrop-blur-xl backdrop-saturate-150 shadow-[0_12px_32px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,0.85)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] max-h-[80vh] overflow-y-auto">
-      <div class="flex items-center justify-between px-2 pb-2 mb-2 border-b border-gray-200/70 dark:border-white/10">
-        <span class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-zinc-400">Navigation</span>
+    <div class="flex items-center justify-between gap-2 px-2 pb-2.5 mb-2.5 border-b border-gray-200/70 dark:border-white/10">
+      <span
+        data-i18n="nav.heading"
+        class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-zinc-400"
+      >
+        Navigation
+      </span>
+
+      <div class="flex items-center gap-2">
+        <!-- Mobile Menu Language Switcher -->
+        <div
+          role="group"
+          aria-label="Language switcher"
+          class="relative inline-flex items-center p-0.5 rounded-full bg-gray-100/90 dark:bg-zinc-800/90 border border-gray-200/80 dark:border-white/10"
+        >
+          <span
+            aria-hidden="true"
+            data-lang-glider
+            class="lang-glider pointer-events-none absolute top-0.5 bottom-0.5 left-0.5 w-7 rounded-full bg-[#0F766E] dark:bg-teal-500"
+          ></span>
+          <button
+            type="button"
+            data-lang-btn="en"
+            aria-pressed="true"
+            class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-white"
+          >
+            EN
+          </button>
+          <button
+            type="button"
+            data-lang-btn="id"
+            aria-pressed="false"
+            class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-100"
+          >
+            ID
+          </button>
+        </div>
+
         <button
           id="mobile-menu-close"
           type="button"
           aria-label="Close menu"
-          class="w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full text-gray-600 dark:text-zinc-300 hover:bg-neutral-900/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
+          data-i18n-aria="nav.closeMenu"
+          class="w-10 h-10 min-w-[40px] min-h-[40px] inline-flex items-center justify-center rounded-full text-gray-600 dark:text-zinc-300 hover:bg-neutral-900/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
         >
           <!-- Tabler x icon -->
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M18 6l-12 12" />
             <path d="M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <ul class="flex flex-col space-y-1">
-        {navItems.map((item, idx) => {
-          const isDefaultActive = idx === 0;
-          return (
-            <li>
-              <a
-                href={item.href}
-                data-mobile-nav-id={item.id}
-                aria-current={isDefaultActive ? "page" : undefined}
-                class:list={[
-                  "mobile-nav-link flex items-center gap-3 min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200",
-                  isDefaultActive
-                    ? "is-active bg-[#0F766E] dark:bg-teal-500 text-white shadow-[0_0_12px_rgba(15,118,110,0.35)] dark:shadow-[0_0_14px_rgba(20,184,166,0.4)]"
-                    : "text-gray-700 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/10",
-                ]}
-              >
-                {item.id === "about" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                  </svg>
-                )}
-                {item.id === "experience" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-                    <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
-                    <path d="M12 12l0 .01" />
-                    <path d="M3 13a20 20 0 0 0 18 0" />
-                  </svg>
-                )}
-                {item.id === "projects" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                    <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                    <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                    <path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                  </svg>
-                )}
-                {item.id === "skills" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M7 8l-4 4l4 4" />
-                    <path d="M17 8l4 4l-4 4" />
-                    <path d="M14 4l-4 16" />
-                  </svg>
-                )}
-                {item.id === "education" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
-                    <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
-                  </svg>
-                )}
-                {item.id === "certifications" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" />
-                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73" />
-                    <path d="M6 9l12 0" />
-                    <path d="M6 12l3 0" />
-                    <path d="M6 15l2 0" />
-                  </svg>
-                )}
-                {item.id === "organizations" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                    <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                    <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                    <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                    <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                    <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
-                  </svg>
-                )}
-                {item.id === "awards" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M8 21l8 0" />
-                    <path d="M12 17l0 4" />
-                    <path d="M7 4l10 0" />
-                    <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
-                    <path d="M5 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M19 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                  </svg>
-                )}
-                {item.id === "contact" && (
-                  <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-                    <path d="M3 7l9 6l9 -6" />
-                  </svg>
-                )}
-                <span>{item.label}</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
     </div>
+
+    <ul class="flex flex-col space-y-1">
+      {centerNavItems.map((item, idx) => {
+        const isDefaultActive = idx === 0;
+        return (
+          <li>
+            <a
+              href={item.href}
+              data-mobile-nav-id={item.id}
+              aria-current={isDefaultActive ? "page" : undefined}
+              class:list={[
+                "mobile-nav-link flex items-center gap-3 min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-medium transition-colors duration-200",
+                isDefaultActive
+                  ? "is-active bg-[#0F766E] dark:bg-teal-500 text-white"
+                  : "text-gray-800 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/10",
+              ]}
+            >
+              {item.id === "about" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                </svg>
+              )}
+              {item.id === "experience" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+                  <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
+                  <path d="M12 12l0 .01" />
+                  <path d="M3 13a20 20 0 0 0 18 0" />
+                </svg>
+              )}
+              {item.id === "projects" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                  <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                  <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                  <path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                </svg>
+              )}
+              {item.id === "skills" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M7 8l-4 4l4 4" />
+                  <path d="M17 8l4 4l-4 4" />
+                  <path d="M14 4l-4 16" />
+                </svg>
+              )}
+              {item.id === "education" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
+                  <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
+                </svg>
+              )}
+              {item.id === "certifications" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                  <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" />
+                  <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73" />
+                  <path d="M6 9l12 0" />
+                  <path d="M6 12l3 0" />
+                  <path d="M6 15l2 0" />
+                </svg>
+              )}
+              {item.id === "organizations" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                  <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+                  <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                  <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+                  <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                  <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+                </svg>
+              )}
+              {item.id === "awards" && (
+                <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M8 21l8 0" />
+                  <path d="M12 17l0 4" />
+                  <path d="M7 4l10 0" />
+                  <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
+                  <path d="M5 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                  <path d="M19 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                </svg>
+              )}
+              <span data-i18n={item.i18nKey}>{item.label}</span>
+            </a>
+          </li>
+        );
+      })}
+
+      <!-- Opposite-Contrast Contact Button Inside Mobile Menu -->
+      <li class="pt-2 mt-1 border-t border-gray-200/70 dark:border-white/10">
+        <a
+          href="#contact"
+          id="mobile-contact-btn"
+          data-mobile-nav-contact="contact"
+          class="mobile-nav-close-trigger flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full text-sm font-semibold bg-[#18181B] text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200 transition-transform duration-200 active:scale-[0.99]"
+        >
+          <svg class="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+            <path d="M3 7l9 6l9 -6" />
+          </svg>
+          <span data-i18n="nav.contact">Contact</span>
+        </a>
+      </li>
+    </ul>
   </div>
-</header>
+</div>
 
 <script>
   const themeToggle = document.getElementById("theme-toggle");
   const menuOpenBtn = document.getElementById("mobile-menu-open");
   const menuCloseBtn = document.getElementById("mobile-menu-close");
+  const menuOverlay = document.getElementById("mobile-menu-overlay");
+  const menuBackdrop = document.getElementById("mobile-menu-backdrop");
   const menuPanel = document.getElementById("mobile-menu-panel");
-  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+  const desktopNav = document.getElementById("desktop-nav");
+  const navGlider = document.getElementById("nav-active-glider");
+  const gliderLeft = document.getElementById("nav-glider-left");
+  const gliderMid = document.getElementById("nav-glider-mid");
+  const gliderRight = document.getElementById("nav-glider-right");
+  const desktopContactBtn = document.getElementById("desktop-contact-btn");
+  const mobileContactBtn = document.getElementById("mobile-contact-btn");
+
   const desktopPills = document.querySelectorAll<HTMLAnchorElement>(".desktop-nav-pill[data-nav-id]");
   const mobilePills = document.querySelectorAll<HTMLAnchorElement>(".mobile-nav-link[data-mobile-nav-id]");
+  const closeTriggers = document.querySelectorAll(".mobile-nav-link, .mobile-nav-close-trigger");
 
-  const DESKTOP_ACTIVE = [
-    "is-active",
-    "bg-[#0F766E]",
-    "dark:bg-teal-500",
-    "text-white",
-    "shadow-[0_0_14px_rgba(15,118,110,0.4),inset_0_1px_0_rgba(255,255,255,0.3)]",
-    "dark:shadow-[0_0_16px_rgba(20,184,166,0.45),inset_0_1px_0_rgba(255,255,255,0.3)]",
-  ];
-  const DESKTOP_INACTIVE = [
+  let activeSectionId = "about";
+  let closeMenuTimer: number | undefined;
+
+  const DESKTOP_ACTIVE_TEXT = ["is-active", "text-white"];
+  const DESKTOP_INACTIVE_TEXT = [
     "text-gray-700",
-    "dark:text-zinc-100/85",
-    "hover:bg-neutral-900/5",
-    "dark:hover:bg-white/10",
-    "hover:text-gray-900",
-    "dark:hover:text-zinc-100",
+    "dark:text-zinc-200",
+    "hover:text-gray-950",
+    "dark:hover:text-white",
   ];
 
-  const MOBILE_ACTIVE = [
-    "is-active",
-    "bg-[#0F766E]",
-    "dark:bg-teal-500",
-    "text-white",
-    "shadow-[0_0_12px_rgba(15,118,110,0.35)]",
-    "dark:shadow-[0_0_14px_rgba(20,184,166,0.4)]",
-  ];
+  const MOBILE_ACTIVE = ["is-active", "bg-[#0F766E]", "dark:bg-teal-500", "text-white"];
   const MOBILE_INACTIVE = [
-    "text-gray-700",
+    "text-gray-800",
     "dark:text-zinc-100",
     "hover:bg-neutral-900/5",
     "dark:hover:bg-white/10",
   ];
 
+  const CONTACT_RING = [
+    "ring-2",
+    "ring-[#0F766E]",
+    "dark:ring-teal-400",
+    "ring-offset-2",
+    "ring-offset-zinc-100",
+    "dark:ring-offset-zinc-800",
+  ];
+
+  function positionGliderForPill(pill: HTMLElement | null) {
+    if (!desktopNav || !navGlider || !gliderLeft || !gliderMid || !gliderRight) return;
+    if (!pill || desktopNav.offsetParent === null) {
+      navGlider.style.opacity = "0";
+      return;
+    }
+    const x = pill.offsetLeft;
+    const w = Math.max(36, pill.offsetWidth);
+    const cap = 18;
+    const midWidth = Math.max(1, w - cap * 2 + 1);
+
+    gliderLeft.style.transform = "translate3d(0px, 0, 0)";
+    gliderMid.style.transform = `translate3d(${cap - 0.5}px, 0, 0) scaleX(${midWidth})`;
+    gliderRight.style.transform = `translate3d(${w - cap}px, 0, 0)`;
+    navGlider.style.transform = `translate3d(${x}px, 0, 0)`;
+    navGlider.style.opacity = "1";
+  }
+
   function setActiveSection(sectionId: string) {
+    activeSectionId = sectionId;
+    let matchedDesktopPill: HTMLAnchorElement | null = null;
+
     desktopPills.forEach((pill) => {
       const isMatch = pill.dataset.navId === sectionId;
       if (isMatch) {
-        pill.classList.remove(...DESKTOP_INACTIVE);
-        pill.classList.add(...DESKTOP_ACTIVE);
+        matchedDesktopPill = pill;
+        pill.classList.remove(...DESKTOP_INACTIVE_TEXT);
+        pill.classList.add(...DESKTOP_ACTIVE_TEXT);
         pill.setAttribute("aria-current", "page");
       } else {
-        pill.classList.remove(...DESKTOP_ACTIVE);
-        pill.classList.add(...DESKTOP_INACTIVE);
+        pill.classList.remove(...DESKTOP_ACTIVE_TEXT);
+        pill.classList.add(...DESKTOP_INACTIVE_TEXT);
         pill.removeAttribute("aria-current");
       }
     });
+
+    if (sectionId === "contact") {
+      if (navGlider) navGlider.style.opacity = "0";
+      desktopContactBtn?.classList.add(...CONTACT_RING);
+      desktopContactBtn?.setAttribute("aria-current", "page");
+      mobileContactBtn?.classList.add(...CONTACT_RING);
+      mobileContactBtn?.setAttribute("aria-current", "page");
+    } else {
+      desktopContactBtn?.classList.remove(...CONTACT_RING);
+      desktopContactBtn?.removeAttribute("aria-current");
+      mobileContactBtn?.classList.remove(...CONTACT_RING);
+      mobileContactBtn?.removeAttribute("aria-current");
+      positionGliderForPill(matchedDesktopPill);
+    }
 
     mobilePills.forEach((pill) => {
       const isMatch = pill.dataset.mobileNavId === sectionId;
@@ -388,12 +483,42 @@ const navItems = [
     });
   }
 
+  // Initial glider placement (without initial jump)
+  requestAnimationFrame(() => {
+    setActiveSection(activeSectionId);
+  });
+
+  window.addEventListener("resize", () => {
+    if (activeSectionId !== "contact") {
+      const current = document.querySelector<HTMLAnchorElement>(
+        `.desktop-nav-pill[data-nav-id="${activeSectionId}"]`
+      );
+      positionGliderForPill(current);
+    }
+  });
+
+  // Re-align glider smoothly whenever language changes
+  window.addEventListener("portfolio:langchange", () => {
+    requestAnimationFrame(() => {
+      if (activeSectionId !== "contact") {
+        const current = document.querySelector<HTMLAnchorElement>(
+          `.desktop-nav-pill[data-nav-id="${activeSectionId}"]`
+        );
+        positionGliderForPill(current);
+      }
+    });
+  });
+
   desktopPills.forEach((pill) => {
     pill.addEventListener("click", () => {
       if (pill.dataset.navId) {
         setActiveSection(pill.dataset.navId);
       }
     });
+  });
+
+  desktopContactBtn?.addEventListener("click", () => {
+    setActiveSection("contact");
   });
 
   mobilePills.forEach((pill) => {
@@ -404,12 +529,19 @@ const navItems = [
     });
   });
 
-  // Scroll-spy using IntersectionObserver
-  const sectionIds = Array.from(desktopPills)
-    .map((p) => p.dataset.navId)
-    .filter((id): id is string => Boolean(id));
+  mobileContactBtn?.addEventListener("click", () => {
+    setActiveSection("contact");
+  });
 
-  if ("IntersectionObserver" in window && sectionIds.length > 0) {
+  // Scroll-spy across all sections including Contact
+  const allSpyIds = [
+    ...Array.from(desktopPills)
+      .map((p) => p.dataset.navId)
+      .filter((id): id is string => Boolean(id)),
+    "contact",
+  ];
+
+  if ("IntersectionObserver" in window && allSpyIds.length > 0) {
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -420,27 +552,48 @@ const navItems = [
         }
       },
       {
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: [0, 0.25, 0.5],
+        rootMargin: "-18% 0px -55% 0px",
+        threshold: [0, 0.2, 0.5],
       }
     );
 
-    sectionIds.forEach((id) => {
+    allSpyIds.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
   }
 
-  function closeMobileMenu() {
-    if (!menuPanel || !menuOpenBtn) return;
-    menuPanel.classList.add("hidden");
-    menuOpenBtn.setAttribute("aria-expanded", "false");
+  // Smooth mobile menu open/close with transform & opacity
+  function openMobileMenu() {
+    if (!menuOverlay || !menuBackdrop || !menuPanel || !menuOpenBtn) return;
+    if (closeMenuTimer) window.clearTimeout(closeMenuTimer);
+    menuOverlay.classList.remove("invisible", "pointer-events-none");
+    menuOverlay.setAttribute("aria-hidden", "false");
+    menuOpenBtn.setAttribute("aria-expanded", "true");
+    requestAnimationFrame(() => {
+      menuBackdrop.classList.remove("opacity-0");
+      menuBackdrop.classList.add("opacity-100");
+      menuPanel.classList.remove("opacity-0", "-translate-y-2", "scale-[0.98]");
+      menuPanel.classList.add("opacity-100", "translate-y-0", "scale-100");
+    });
   }
 
-  function openMobileMenu() {
-    if (!menuPanel || !menuOpenBtn) return;
-    menuPanel.classList.remove("hidden");
-    menuOpenBtn.setAttribute("aria-expanded", "true");
+  function closeMobileMenu() {
+    if (!menuOverlay || !menuBackdrop || !menuPanel || !menuOpenBtn) return;
+    menuOpenBtn.setAttribute("aria-expanded", "false");
+    menuOverlay.setAttribute("aria-hidden", "true");
+    menuBackdrop.classList.remove("opacity-100");
+    menuBackdrop.classList.add("opacity-0");
+    menuPanel.classList.remove("opacity-100", "translate-y-0", "scale-100");
+    menuPanel.classList.add("opacity-0", "-translate-y-2", "scale-[0.98]");
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    closeMenuTimer = window.setTimeout(
+      () => {
+        menuOverlay.classList.add("invisible", "pointer-events-none");
+      },
+      reducedMotion ? 0 : 250
+    );
   }
 
   themeToggle?.addEventListener("click", () => {
@@ -463,7 +616,11 @@ const navItems = [
     closeMobileMenu();
   });
 
-  mobileLinks.forEach((link) => {
+  menuBackdrop?.addEventListener("click", () => {
+    closeMobileMenu();
+  });
+
+  closeTriggers.forEach((link) => {
     link.addEventListener("click", () => {
       closeMobileMenu();
     });
@@ -473,5 +630,15 @@ const navItems = [
     if (e.key === "Escape") {
       closeMobileMenu();
     }
+  });
+
+  // Language switcher buttons (syncs both desktop pill and mobile menu switchers)
+  document.querySelectorAll<HTMLButtonElement>("[data-lang-btn]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.langBtn;
+      if ((lang === "en" || lang === "id") && typeof (window as any).__setPortfolioLang === "function") {
+        (window as any).__setPortfolioLang(lang);
+      }
+    });
   });
 </script>

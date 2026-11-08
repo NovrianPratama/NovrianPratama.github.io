@@ -8,15 +8,24 @@ const categories = ["All", "Technology", "Language", "Other"];
   <section id="certifications" class="px-5 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20 bg-gray-50 dark:bg-zinc-900 transition-colors duration-200">
     <div class="max-w-6xl mx-auto">
       <!-- Section Header -->
-      <div class="mb-6">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">
+      <div class="mb-6 reveal-item">
+        <h2
+          data-i18n="certifications.heading"
+          class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100"
+        >
           Certifications
         </h2>
         <div class="w-14 h-1.5 mt-2.5 rounded-full bg-[#0F766E] dark:bg-teal-400"></div>
       </div>
 
       <!-- Category Filter Buttons (All, Technology, Language, Other) -->
-      <div class="flex flex-wrap items-center gap-2 mb-8" role="group" aria-label="Filter certifications by category">
+      <div
+        class="flex flex-wrap items-center gap-2 mb-6 md:mb-8 reveal-item"
+        style="--reveal-delay: 60ms;"
+        role="group"
+        aria-label="Filter certifications by category"
+        data-i18n-aria="certifications.filterAria"
+      >
         {categories.map((cat, idx) => {
           const isDefault = idx === 0;
           return (
@@ -25,29 +34,31 @@ const categories = ["All", "Technology", "Language", "Other"];
               data-cert-cat-btn={cat}
               aria-pressed={isDefault ? "true" : "false"}
               class:list={[
-                "cert-cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 cursor-pointer",
+                "cert-cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold border transition-colors duration-200 cursor-pointer",
                 isDefault
                   ? "bg-[#0F766E] dark:bg-teal-500 text-white border-[#0F766E] dark:border-teal-500 shadow-sm"
                   : "bg-white dark:bg-zinc-800 text-gray-700 dark:text-zinc-400 border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-zinc-100",
               ]}
             >
-              {cat}
+              <span data-i18n={`certifications.cat.${cat}`}>{cat}</span>
             </button>
           );
         })}
       </div>
 
-      <!-- Responsive 3-Column Grid -->
+      <!-- Mobile (<768px): Horizontal Snap-Scroll Carousel | Desktop (>=768px): Grid -->
       <div
         id="cert-grid"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 transition-opacity duration-200"
+        class="flex md:grid md:grid-cols-2 lg:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory gap-3.5 md:gap-5 pb-2 md:pb-0 -mx-5 px-5 sm:-mx-8 sm:px-8 md:mx-0 md:px-0 scroll-pl-5 sm:scroll-pl-8 no-scrollbar transition-opacity duration-200"
       >
-        {siteConfig.certifications.map((cert) => {
+        {siteConfig.certifications.map((cert, idx) => {
           const hasUrl = Boolean(cert.credentialUrl && cert.credentialUrl.trim() !== "");
+          const delayMs = Math.min(idx * 55, 275);
           return (
             <article
               data-cert-category={cert.category}
-              class="cert-card bg-white dark:bg-zinc-800 rounded-xl border border-gray-200 dark:border-white/10 p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between gap-4"
+              style={`--reveal-delay: ${delayMs}ms;`}
+              class="cert-card reveal-item flex-none w-[83%] sm:w-[76%] md:w-auto snap-start bg-white dark:bg-zinc-800 rounded-xl border border-gray-200 dark:border-white/10 p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between gap-4"
             >
               <div class="flex items-start gap-3.5">
                 <!-- Small Certificate Icon Tile -->
@@ -67,10 +78,16 @@ const categories = ["All", "Technology", "Language", "Other"];
                 </div>
 
                 <div class="min-w-0 flex-1">
-                  <h3 class="text-sm sm:text-base font-semibold text-gray-900 dark:text-zinc-100 leading-snug">
+                  <h3
+                    data-i18n={`certifications.${idx}.name`}
+                    class="text-sm sm:text-base font-semibold text-gray-900 dark:text-zinc-100 leading-snug"
+                  >
                     {cert.name}
                   </h3>
-                  <p class="text-xs sm:text-sm text-[#0F766E] dark:text-teal-400 font-medium mt-1">
+                  <p
+                    data-i18n={`certifications.${idx}.issuer`}
+                    class="text-xs sm:text-sm text-[#0F766E] dark:text-teal-400 font-medium mt-1"
+                  >
                     {cert.issuer}
                   </p>
                   <p class="text-xs text-gray-500 dark:text-zinc-400 mt-0.5">
@@ -79,7 +96,7 @@ const categories = ["All", "Technology", "Language", "Other"];
                 </div>
               </div>
 
-              <!-- Credential Button Slot (Active Link when URL exists, Muted Non-clickable State when empty) -->
+              <!-- Credential Button Slot -->
               <div class="pt-2.5 border-t border-gray-100 dark:border-white/10">
                 {hasUrl ? (
                   <a
@@ -88,8 +105,7 @@ const categories = ["All", "Technology", "Language", "Other"];
                     rel="noopener noreferrer"
                     class="inline-flex items-center justify-center gap-1.5 w-full min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold bg-teal-50 dark:bg-teal-500/15 text-[#0F766E] dark:text-teal-400 border border-teal-200 dark:border-teal-400/25 hover:bg-[#0F766E] hover:text-white dark:hover:bg-teal-500 dark:hover:text-white transition-colors"
                   >
-                    <span>View credential</span>
-                    <!-- Tabler external-link icon -->
+                    <span data-i18n="certifications.viewCredential">View credential</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                       <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
@@ -102,8 +118,7 @@ const categories = ["All", "Technology", "Language", "Other"];
                     aria-disabled="true"
                     class="inline-flex items-center justify-center gap-1.5 w-full min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 dark:bg-zinc-900/60 text-gray-400 dark:text-zinc-500 border border-gray-200/80 dark:border-white/10 select-none cursor-not-allowed"
                   >
-                    <span>Credential link coming soon</span>
-                    <!-- Tabler external-link icon -->
+                    <span data-i18n="certifications.comingSoon">Credential link coming soon</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                       <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
@@ -117,6 +132,56 @@ const categories = ["All", "Technology", "Language", "Other"];
           );
         })}
       </div>
+
+      <!-- Mobile Scroll Cue & Carousel Controls (<768px only) -->
+      <div class="flex md:hidden items-center justify-between gap-3 pt-3 text-xs text-gray-500 dark:text-zinc-400">
+        <div class="inline-flex items-center gap-1.5">
+          <!-- Tabler arrows-horizontal icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#0F766E] dark:text-teal-400" aria-hidden="true">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M16 3l4 4l-4 4" />
+            <path d="M10 7l10 0" />
+            <path d="M8 13l-4 4l4 4" />
+            <path d="M4 17l9 0" />
+          </svg>
+          <span data-i18n="certifications.swipeHint">Swipe to browse</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span
+            id="cert-carousel-counter"
+            class="font-mono font-semibold text-[#0F766E] dark:text-teal-400 tabular-nums"
+          >
+            1 / {siteConfig.certifications.length}
+          </span>
+          <div class="inline-flex items-center gap-1">
+            <button
+              type="button"
+              id="cert-prev-btn"
+              aria-label="Previous certification"
+              data-i18n-aria="certifications.prevAria"
+              class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-white dark:bg-zinc-800 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-zinc-200 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M15 6l-6 6l6 6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              id="cert-next-btn"
+              aria-label="Next certification"
+              data-i18n-aria="certifications.nextAria"
+              class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-white dark:bg-zinc-800 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-zinc-200 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 )}
@@ -125,6 +190,9 @@ const categories = ["All", "Technology", "Language", "Other"];
   const catBtns = document.querySelectorAll<HTMLButtonElement>(".cert-cat-btn");
   const certCards = document.querySelectorAll<HTMLElement>(".cert-card");
   const certGrid = document.getElementById("cert-grid");
+  const certCounter = document.getElementById("cert-carousel-counter");
+  const prevBtn = document.getElementById("cert-prev-btn");
+  const nextBtn = document.getElementById("cert-next-btn");
 
   const ACTIVE_BTN = [
     "bg-[#0F766E]",
@@ -146,6 +214,53 @@ const categories = ["All", "Technology", "Language", "Other"];
     "hover:text-gray-900",
     "dark:hover:text-zinc-100",
   ];
+
+  function getVisibleCertCards(): HTMLElement[] {
+    return Array.from(certCards).filter((c) => !c.classList.contains("hidden"));
+  }
+
+  function updateCarouselCounter() {
+    if (!certGrid || !certCounter) return;
+    const visible = getVisibleCertCards();
+    const total = visible.length;
+    if (total === 0) {
+      certCounter.textContent = "0 / 0";
+      return;
+    }
+    const gridLeft = certGrid.getBoundingClientRect().left;
+    let closestIdx = 0;
+    let minDist = Infinity;
+    visible.forEach((card, idx) => {
+      const dist = Math.abs(card.getBoundingClientRect().left - gridLeft - 20);
+      if (dist < minDist) {
+        minDist = dist;
+        closestIdx = idx;
+      }
+    });
+    certCounter.textContent = `${closestIdx + 1} / ${total}`;
+  }
+
+  certGrid?.addEventListener("scroll", () => {
+    requestAnimationFrame(updateCarouselCounter);
+  }, { passive: true });
+
+  prevBtn?.addEventListener("click", () => {
+    if (!certGrid) return;
+    const visible = getVisibleCertCards();
+    if (visible.length === 0) return;
+    const step = visible[0].offsetWidth + 14;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    certGrid.scrollBy({ left: -step, behavior: reduced ? "auto" : "smooth" });
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    if (!certGrid) return;
+    const visible = getVisibleCertCards();
+    if (visible.length === 0) return;
+    const step = visible[0].offsetWidth + 14;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    certGrid.scrollBy({ left: step, behavior: reduced ? "auto" : "smooth" });
+  });
 
   catBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -178,8 +293,10 @@ const categories = ["All", "Technology", "Language", "Other"];
           }
         });
         if (certGrid) {
+          certGrid.scrollLeft = 0;
           certGrid.classList.remove("opacity-0");
         }
+        updateCarouselCounter();
       }, 120);
     });
   });

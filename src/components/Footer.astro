@@ -3,6 +3,7 @@ import { siteConfig } from "../config";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 const hasCertifications = siteConfig.certifications && siteConfig.certifications.length > 0;
 const hasOrganizations = siteConfig.organizations && siteConfig.organizations.length > 0;
@@ -49,19 +50,20 @@ const hasAwards = siteConfig.awards && siteConfig.awards.length > 0;
     </div>
 
     <!-- Right: nav + copyright -->
-    <div class="hidden md:flex flex-col md:items-end gap-3">
-      <nav class="flex flex-wrap gap-5 justify-end">
-        <a href="#about" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">About</a>
-        {hasExperience && <a href="#experience" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Experience</a>}
-        {hasProjects && <a href="#projects" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Projects</a>}
-        {hasEducation && <a href="#education" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Education</a>}
-        {hasCertifications && <a href="#certifications" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Certifications</a>}
-        {hasOrganizations && <a href="#organizations" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Organizations</a>}
-        {hasAwards && <a href="#awards" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Awards</a>}
-        <a href="#contact" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Contact</a>
+    <div class="flex flex-col md:items-end gap-3">
+      <nav class="hidden md:flex flex-wrap gap-5 justify-end">
+        <a href="#about" data-i18n="nav.about" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">About</a>
+        {hasExperience && <a href="#experience" data-i18n="nav.experience" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Experience</a>}
+        {hasProjects && <a href="#projects" data-i18n="nav.projects" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Projects</a>}
+        {hasSkills && <a href="#skills" data-i18n="nav.skills" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Skills</a>}
+        {hasEducation && <a href="#education" data-i18n="nav.education" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Education</a>}
+        {hasCertifications && <a href="#certifications" data-i18n="nav.certifications" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Certifications</a>}
+        {hasOrganizations && <a href="#organizations" data-i18n="nav.organizations" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Organizations</a>}
+        {hasAwards && <a href="#awards" data-i18n="nav.awards" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Awards</a>}
+        <a href="#contact" data-i18n="nav.contact" class="text-sm text-gray-500 dark:text-zinc-400 hover:text-gray-800 dark:hover:text-zinc-100 transition-colors">Contact</a>
       </nav>
       <p class="text-xs text-gray-400 dark:text-zinc-500">
-        &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+        &copy; {new Date().getFullYear()} {siteConfig.name}. <span data-i18n="footer.rights">All rights reserved.</span>
       </p>
     </div>
 

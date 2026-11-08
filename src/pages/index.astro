@@ -11,14 +11,14 @@ import Organizations from "../components/Organizations.astro";
 import Awards from "../components/Awards.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
-import { siteConfig } from "../config";
+import { siteConfig, i18nDictionary } from "../config";
 import "../styles/global.css";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/jpeg" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.jpg`} />
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.png`} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={siteConfig.description} />
@@ -34,11 +34,19 @@ import "../styles/global.css";
       rel="stylesheet"
     />
     <title>{`${siteConfig.name}: ${siteConfig.title}`}</title>
+    <noscript>
+      <style>
+        #page-skeleton {
+          display: none !important;
+        }
+      </style>
+    </noscript>
     <script is:inline>
       (function () {
+        window.__skeletonStart = performance.now();
         try {
-          var stored = localStorage.getItem("theme");
-          if (stored === "dark") {
+          var storedTheme = localStorage.getItem("theme");
+          if (storedTheme === "dark") {
             document.documentElement.classList.add("dark");
           } else {
             document.documentElement.classList.remove("dark");
@@ -46,10 +54,101 @@ import "../styles/global.css";
         } catch (e) {
           document.documentElement.classList.remove("dark");
         }
+
+        try {
+          var storedLang = localStorage.getItem("lang");
+          var lang = storedLang === "id" ? "id" : "en";
+          document.documentElement.lang = lang;
+          document.documentElement.dataset.lang = lang;
+        } catch (e) {
+          document.documentElement.lang = "en";
+          document.documentElement.dataset.lang = "en";
+        }
+
+        var reduced = false;
+        try {
+          reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        } catch (e) {}
+        if (!reduced) {
+          document.documentElement.classList.add("js-ready");
+        }
       })();
     </script>
   </head>
   <body class="bg-white text-gray-900 dark:bg-zinc-900 dark:text-zinc-100 transition-colors duration-200">
+    <!-- Brief Responsive Skeleton Loading Overlay (Zero Layout Shift) -->
+    <div
+      id="page-skeleton"
+      aria-hidden="true"
+      class="fixed inset-0 z-[100] bg-white dark:bg-zinc-900 overflow-hidden flex flex-col justify-between"
+    >
+      <!-- Top Floating Pill Navbar Skeleton -->
+      <div class="pt-4 px-3 sm:px-4 flex justify-center">
+        <div class="w-full max-w-xl xl:w-fit xl:max-w-[1240px] h-12 rounded-full border border-gray-200/80 dark:border-white/10 bg-gray-100/80 dark:bg-zinc-800/80 px-2.5 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2.5">
+            <div class="skeleton-block w-10 h-10 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="skeleton-block w-14 h-4 rounded-md bg-gray-200 dark:bg-zinc-700"></div>
+          </div>
+          <div class="hidden xl:flex items-center gap-2">
+            <div class="skeleton-block w-14 h-7 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="skeleton-block w-20 h-7 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="skeleton-block w-16 h-7 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="skeleton-block w-14 h-7 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="skeleton-block w-20 h-7 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="skeleton-block w-24 h-7 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="skeleton-block w-14 h-8 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="skeleton-block w-10 h-10 rounded-full bg-gray-200 dark:bg-zinc-700"></div>
+            <div class="hidden xl:block skeleton-block w-20 h-9 rounded-full bg-gray-300 dark:bg-zinc-600"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Placeholder Block -->
+      <div class="w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 py-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+          <div class="lg:col-span-7 space-y-3 sm:space-y-4">
+            <div class="skeleton-block w-40 h-3.5 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+            <div class="skeleton-block w-20 h-5 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+            <div class="skeleton-block w-4/5 max-w-md h-10 sm:h-14 rounded-xl bg-gray-200 dark:bg-zinc-800"></div>
+            <div class="flex items-center gap-2.5">
+              <div class="skeleton-block w-56 sm:w-72 h-6 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-24 h-6 rounded-full bg-gray-200 dark:bg-zinc-800"></div>
+            </div>
+            <div class="space-y-2 pt-1 max-w-xl">
+              <div class="skeleton-block w-full h-4 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-5/6 h-4 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <div class="skeleton-block w-32 sm:w-36 h-11 rounded-lg bg-gray-300 dark:bg-zinc-700"></div>
+              <div class="skeleton-block w-32 sm:w-36 h-11 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+            </div>
+            <div class="flex gap-2 pt-1">
+              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+            </div>
+          </div>
+          <div class="lg:col-span-5 flex justify-center lg:justify-end">
+            <div class="skeleton-block w-40 sm:w-60 md:w-68 lg:w-76 aspect-[4/5] rounded-2xl bg-gray-200 dark:bg-zinc-800"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Block Placeholders at Bottom Edge -->
+      <div class="w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 pb-5 pt-3 border-t border-gray-100 dark:border-white/5">
+        <div class="skeleton-block w-32 h-6 rounded-lg bg-gray-200 dark:bg-zinc-800 mb-3"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="skeleton-block h-12 rounded-xl bg-gray-100 dark:bg-zinc-800/80"></div>
+          <div class="hidden sm:block skeleton-block h-12 rounded-xl bg-gray-100 dark:bg-zinc-800/80"></div>
+          <div class="hidden sm:block skeleton-block h-12 rounded-xl bg-gray-100 dark:bg-zinc-800/80"></div>
+        </div>
+      </div>
+    </div>
+
     <Header />
     <main>
       <Hero />
@@ -64,5 +163,180 @@ import "../styles/global.css";
       <Contact />
     </main>
     <Footer />
+
+    <!-- Synchronous Pre-Paint Language & Skeleton Controller -->
+    <script is:inline define:vars={{ i18nDictionary }}>
+      (function () {
+        var currentLang = document.documentElement.lang === "id" ? "id" : "en";
+
+        function updateSwitcherUI(lang) {
+          var gliders = document.querySelectorAll("[data-lang-glider]");
+          for (var g = 0; g < gliders.length; g++) {
+            gliders[g].style.transform =
+              lang === "id" ? "translate3d(100%, 0, 0)" : "translate3d(0%, 0, 0)";
+          }
+
+          var btns = document.querySelectorAll("[data-lang-btn]");
+          for (var i = 0; i < btns.length; i++) {
+            var btn = btns[i];
+            var isMatch = btn.getAttribute("data-lang-btn") === lang;
+            btn.setAttribute("aria-pressed", isMatch ? "true" : "false");
+            if (isMatch) {
+              btn.classList.remove(
+                "text-gray-600",
+                "dark:text-zinc-400",
+                "hover:text-gray-900",
+                "dark:hover:text-zinc-100"
+              );
+              btn.classList.add("text-white");
+            } else {
+              btn.classList.remove("text-white");
+              btn.classList.add(
+                "text-gray-600",
+                "dark:text-zinc-400",
+                "hover:text-gray-900",
+                "dark:hover:text-zinc-100"
+              );
+            }
+          }
+        }
+
+        function applyPortfolioLang(lang, persist) {
+          var targetLang = lang === "id" ? "id" : "en";
+          currentLang = targetLang;
+          var dict = i18nDictionary[targetLang] || i18nDictionary.en;
+
+          document.documentElement.lang = targetLang;
+          document.documentElement.dataset.lang = targetLang;
+
+          if (dict["page.title"]) {
+            document.title = dict["page.title"];
+          }
+
+          var textNodes = document.querySelectorAll("[data-i18n]");
+          for (var i = 0; i < textNodes.length; i++) {
+            var el = textNodes[i];
+            var key = el.getAttribute("data-i18n");
+            if (key && Object.prototype.hasOwnProperty.call(dict, key)) {
+              el.textContent = dict[key];
+            }
+          }
+
+          var placeholderNodes = document.querySelectorAll("[data-i18n-placeholder]");
+          for (var j = 0; j < placeholderNodes.length; j++) {
+            var pEl = placeholderNodes[j];
+            var pKey = pEl.getAttribute("data-i18n-placeholder");
+            if (pKey && Object.prototype.hasOwnProperty.call(dict, pKey)) {
+              pEl.setAttribute("placeholder", dict[pKey]);
+            }
+          }
+
+          var ariaNodes = document.querySelectorAll("[data-i18n-aria]");
+          for (var k = 0; k < ariaNodes.length; k++) {
+            var aEl = ariaNodes[k];
+            var aKey = aEl.getAttribute("data-i18n-aria");
+            if (aKey && Object.prototype.hasOwnProperty.call(dict, aKey)) {
+              aEl.setAttribute("aria-label", dict[aKey]);
+            }
+          }
+
+          updateSwitcherUI(targetLang);
+
+          if (persist) {
+            try {
+              localStorage.setItem("lang", targetLang);
+            } catch (e) {}
+            window.dispatchEvent(
+              new CustomEvent("portfolio:langchange", { detail: { lang: targetLang } })
+            );
+          }
+        }
+
+        window.__setPortfolioLang = function (lang) {
+          applyPortfolioLang(lang, true);
+        };
+
+        window.__getPortfolioText = function (key) {
+          var dict = i18nDictionary[currentLang] || i18nDictionary.en;
+          return dict[key] || "";
+        };
+
+        // Apply saved language synchronously BEFORE first paint (zero flash)
+        if (currentLang === "id") {
+          applyPortfolioLang("id", false);
+        } else {
+          updateSwitcherUI("en");
+        }
+
+        // Brief Skeleton Loading Screen dismissal
+        var skeleton = document.getElementById("page-skeleton");
+        if (skeleton) {
+          var reducedMotion = false;
+          try {
+            reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          } catch (e) {}
+
+          if (reducedMotion) {
+            skeleton.style.display = "none";
+          } else {
+            var dismissed = false;
+            var hideSkeleton = function () {
+              if (dismissed) return;
+              dismissed = true;
+              skeleton.classList.add("is-hiding");
+              setTimeout(function () {
+                skeleton.style.display = "none";
+              }, 280);
+            };
+
+            var minDisplayMs = 260;
+            var onReady = function () {
+              var elapsed = performance.now() - (window.__skeletonStart || 0);
+              var remaining = Math.max(0, minDisplayMs - elapsed);
+              setTimeout(hideSkeleton, remaining);
+            };
+
+            if (document.readyState === "complete") {
+              onReady();
+            } else {
+              window.addEventListener("load", onReady, { once: true });
+              // Hard fallback so slow network fonts never block real content
+              setTimeout(hideSkeleton, 850);
+            }
+          }
+        }
+
+        // Scroll-triggered reveal animations (IntersectionObserver, GPU-friendly)
+        var revealItems = document.querySelectorAll(".reveal-item");
+        var prefersReduced = false;
+        try {
+          prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        } catch (e) {}
+
+        if (prefersReduced || !("IntersectionObserver" in window)) {
+          for (var r = 0; r < revealItems.length; r++) {
+            revealItems[r].classList.add("is-revealed");
+          }
+        } else {
+          var revealObserver = new IntersectionObserver(
+            function (entries) {
+              for (var m = 0; m < entries.length; m++) {
+                if (entries[m].isIntersecting) {
+                  entries[m].target.classList.add("is-revealed");
+                  revealObserver.unobserve(entries[m].target);
+                }
+              }
+            },
+            {
+              threshold: 0.08,
+              rootMargin: "0px 0px -36px 0px",
+            }
+          );
+          for (var n = 0; n < revealItems.length; n++) {
+            revealObserver.observe(revealItems[n]);
+          }
+        }
+      })();
+    </script>
   </body>
 </html>

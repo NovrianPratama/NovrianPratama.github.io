@@ -10,21 +10,33 @@ const hasSkills = siteConfig.skillGroups && siteConfig.skillGroups.length > 0;
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
         <!-- Label -->
-        <div class="lg:col-span-4">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">
+        <div class="lg:col-span-4 reveal-item">
+          <h2
+            data-i18n="skills.heading"
+            class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100"
+          >
             Skills
           </h2>
           <div class="w-14 h-1.5 mt-2.5 rounded-full bg-[#0F766E] dark:bg-teal-400"></div>
-          <p class="mt-3 text-sm text-gray-500 dark:text-zinc-400 leading-relaxed">
+          <p
+            data-i18n="skills.intro"
+            class="mt-3 text-sm text-gray-500 dark:text-zinc-400 leading-relaxed"
+          >
             Tools and technologies I have experience using across data analytics and business intelligence projects.
           </p>
         </div>
 
         <!-- Skill groups -->
         <div class="lg:col-span-8 space-y-6">
-          {siteConfig.skillGroups.map((group) => (
-            <div>
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-zinc-500 mb-3">
+          {siteConfig.skillGroups.map((group, gIdx) => (
+            <div
+              style={`--reveal-delay: ${Math.min(gIdx * 80, 240)}ms;`}
+              class="reveal-item"
+            >
+              <h3
+                data-i18n={`skills.group.${gIdx}`}
+                class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-zinc-500 mb-3"
+              >
                 {group.label}
               </h3>
               <div class="flex flex-wrap gap-2.5">

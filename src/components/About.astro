@@ -7,15 +7,18 @@ import { siteConfig } from "../config";
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
       <!-- Section label -->
-      <div class="lg:col-span-4">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100">
+      <div class="lg:col-span-4 reveal-item">
+        <h2
+          data-i18n="about.heading"
+          class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-zinc-100"
+        >
           About Me
         </h2>
         <div class="w-14 h-1.5 mt-2.5 rounded-full bg-[#0F766E] dark:bg-teal-400"></div>
       </div>
 
       <!-- Content -->
-      <div class="lg:col-span-8">
+      <div class="lg:col-span-8 reveal-item" style="--reveal-delay: 80ms;">
         <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start">
 
           <!-- Photo -->
@@ -27,14 +30,17 @@ import { siteConfig } from "../config";
                 width="160"
                 height="160"
                 class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover object-top shadow-md ring-1 ring-gray-200 dark:ring-white/10"
-                loading="eager"
+                loading="lazy"
               />
             </div>
           )}
 
           <!-- Text -->
           <div class="space-y-4">
-            <p class="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-zinc-400">
+            <p
+              data-i18n="about.body"
+              class="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-zinc-400"
+            >
               {siteConfig.aboutMe}
             </p>
           </div>
