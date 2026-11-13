@@ -210,7 +210,7 @@ html.js-ready .reveal-item.is-revealed {
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto !important;
   }
   #page-skeleton {
     display: none !important;
@@ -220,10 +220,15 @@ html.js-ready .reveal-item.is-revealed {
     display: none !important;
   }
   .animate-fade-in,
+  .animation-delay-200,
+  .animation-delay-400,
+  .animation-delay-600,
+  .animation-delay-800,
   #navbar-pill {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
   }
   html.js-ready .reveal-item {
     opacity: 1 !important;
@@ -240,5 +245,6 @@ html.js-ready .reveal-item.is-revealed {
   #mobile-menu-backdrop,
   #mobile-menu-panel {
     transition: none !important;
+    animation: none !important;
   }
 }

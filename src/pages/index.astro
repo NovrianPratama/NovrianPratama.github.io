@@ -120,16 +120,22 @@ import "../styles/global.css";
               <div class="skeleton-block w-full h-4 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
               <div class="skeleton-block w-5/6 h-4 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
             </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <div class="skeleton-block w-24 h-6 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-20 h-6 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-16 h-6 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-28 h-6 rounded-md bg-gray-200 dark:bg-zinc-800"></div>
+            </div>
             <div class="flex gap-3 pt-2">
-              <div class="skeleton-block w-32 sm:w-36 h-11 rounded-lg bg-gray-300 dark:bg-zinc-700"></div>
+              <div class="skeleton-block w-36 sm:w-44 h-11 rounded-lg bg-gray-300 dark:bg-zinc-700"></div>
               <div class="skeleton-block w-32 sm:w-36 h-11 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
             </div>
-            <div class="flex gap-2 pt-1">
-              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
-              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
-              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
-              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
-              <div class="skeleton-block w-10 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <div class="skeleton-block w-20 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-20 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-20 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-18 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
+              <div class="skeleton-block w-18 h-10 rounded-lg bg-gray-200 dark:bg-zinc-800"></div>
             </div>
           </div>
           <div class="lg:col-span-5 flex justify-center lg:justify-end">
@@ -188,9 +194,9 @@ import "../styles/global.css";
                 "hover:text-gray-900",
                 "dark:hover:text-zinc-100"
               );
-              btn.classList.add("text-white");
+              btn.classList.add("text-white", "dark:text-zinc-950");
             } else {
-              btn.classList.remove("text-white");
+              btn.classList.remove("text-white", "dark:text-zinc-950");
               btn.classList.add(
                 "text-gray-600",
                 "dark:text-zinc-400",

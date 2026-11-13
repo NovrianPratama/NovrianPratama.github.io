@@ -85,7 +85,7 @@ const centerNavItems = [
             class:list={[
               "desktop-nav-pill relative z-10 inline-flex items-center justify-center min-h-[38px] rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors duration-200 whitespace-nowrap flex-shrink-0",
               isDefaultActive
-                ? "is-active text-white"
+                ? "is-active text-white dark:text-zinc-950"
                 : "text-gray-700 dark:text-zinc-200 hover:text-gray-950 dark:hover:text-white",
             ]}
           >
@@ -118,7 +118,7 @@ const centerNavItems = [
           type="button"
           data-lang-btn="en"
           aria-pressed="true"
-          class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-white"
+          class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-white dark:text-zinc-950"
         >
           EN
         </button>
@@ -226,7 +226,7 @@ const centerNavItems = [
             type="button"
             data-lang-btn="en"
             aria-pressed="true"
-            class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-white"
+            class="relative z-10 w-7 h-7 inline-flex items-center justify-center rounded-full text-[11px] font-bold tracking-wide transition-colors duration-200 cursor-pointer text-white dark:text-zinc-950"
           >
             EN
           </button>
@@ -269,7 +269,7 @@ const centerNavItems = [
               class:list={[
                 "mobile-nav-link flex items-center gap-3 min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-medium transition-colors duration-200",
                 isDefaultActive
-                  ? "is-active bg-[#0F766E] dark:bg-teal-500 text-white"
+                  ? "is-active bg-[#0F766E] dark:bg-teal-500 text-white dark:text-zinc-950"
                   : "text-gray-800 dark:text-zinc-100 hover:bg-neutral-900/5 dark:hover:bg-white/10",
               ]}
             >
@@ -394,7 +394,7 @@ const centerNavItems = [
   let activeSectionId = "about";
   let closeMenuTimer: number | undefined;
 
-  const DESKTOP_ACTIVE_TEXT = ["is-active", "text-white"];
+  const DESKTOP_ACTIVE_TEXT = ["is-active", "text-white", "dark:text-zinc-950"];
   const DESKTOP_INACTIVE_TEXT = [
     "text-gray-700",
     "dark:text-zinc-200",
@@ -402,7 +402,13 @@ const centerNavItems = [
     "dark:hover:text-white",
   ];
 
-  const MOBILE_ACTIVE = ["is-active", "bg-[#0F766E]", "dark:bg-teal-500", "text-white"];
+  const MOBILE_ACTIVE = [
+    "is-active",
+    "bg-[#0F766E]",
+    "dark:bg-teal-500",
+    "text-white",
+    "dark:text-zinc-950",
+  ];
   const MOBILE_INACTIVE = [
     "text-gray-800",
     "dark:text-zinc-100",
